@@ -31,13 +31,13 @@ const CheckBox: React.FC<CheckBoxProps> = ({ formikProps, fieldProps }) => {
   console.log(fieldError);
   const { options = [], name, helperText, column = false } = fieldProps;
   return (
-    <div className="checkbox-field abc">
-      <label className="checkbox-header">{fieldProps.header}</label>
+    <div className="checkbox-field other-class">
+      <span className="checkbox-header">{fieldProps.header}</span>
       <div
         className={clsx("checkbox-container", column ? "column" : undefined)}
       >
         {options.map((it) => (
-          <label key={it.value} className="checkbox-label">
+          <span key={it.value} className="checkbox-label">
             <input
               className="checkbox-input"
               type="checkbox"
@@ -47,17 +47,17 @@ const CheckBox: React.FC<CheckBoxProps> = ({ formikProps, fieldProps }) => {
               onChange={formikProps.handleChange}
             />
             {it.label}
-          </label>
+          </span>
         ))}
       </div>
       {(fieldError || helperText) && (
-        <label>
+        <div>
           {fieldError ? (
-            <label className="error">{fieldError}</label>
+            <span className="error">{fieldError}</span>
           ) : (
-            <label className="helper-text">{helperText} </label>
+            <span className="helper-text">{helperText} </span>
           )}
-        </label>
+        </div>
       )}
     </div>
   );

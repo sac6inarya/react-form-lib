@@ -1,50 +1,49 @@
 import "./App.css";
-import CheckBox, { FieldProps } from "./components/Checkbox/index";
-import { Option } from "./components/Checkbox/index";
+import Radio, { RadioFieldProps } from "./components/Radio/index";
+import { Option } from "./components/Radio/index";
 import { Formik } from "formik";
 import * as Yup from "yup";
+// import { ReactForm } from "react-forms";
 
 const genderOptions: Option[] = [
   { value: "male", label: "Male" },
   { value: "female", label: "Female" },
   { value: "other", label: "Other" },
 ];
-const genderFieldProps: FieldProps = {
+const genderFieldProps: RadioFieldProps = {
   name: "gender",
   options: genderOptions,
   header: "Select Gender",
-  helperText: "Choose one or more options",
+  helperText: "Select any one option",
+  column: true,
 };
 
 const placedOptions: Option[] = [
   { value: "yes", label: "Yes" },
   { value: "no", label: "No" },
 ];
-const placedFieldProps: FieldProps = {
+const placedFieldProps: RadioFieldProps = {
   name: "placed",
   options: placedOptions,
   header: "Placed?",
-  helperText: "Choose at least one options",
-  column: true,
+  helperText: "Select any one option",
 };
 
 function App() {
   const validationSchema = Yup.object({
-    gender: Yup.array()
-      .min(1, "At least one option is required")
-      .of(Yup.string()),
-    placed: Yup.array()
-      .min(1, "At least one option is required")
-      .of(Yup.string()),
+    gender: Yup.string().required("Required"),
+    placed: Yup.string().required("Required"),
   });
+
+  const initialValues = {
+    gender: "",
+    placed: "",
+  };
 
   return (
     <div className="App">
       <Formik
-        initialValues={{
-          gender: ["male"],
-          placed: ["yes"],
-        }}
+        initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values) => {
           console.log(values);
@@ -52,15 +51,9 @@ function App() {
       >
         {(formikProps) => {
           return (
-            <form onSubmit={formikProps.handleSubmit} className="checkbox-form">
-              <CheckBox
-                formikProps={formikProps}
-                fieldProps={genderFieldProps}
-              />
-              <CheckBox
-                formikProps={formikProps}
-                fieldProps={placedFieldProps}
-              />
+            <form onSubmit={formikProps.handleSubmit} className="radio-form">
+              <Radio formikProps={formikProps} fieldProps={genderFieldProps} />
+              <Radio formikProps={formikProps} fieldProps={placedFieldProps} />
               <button type="submit">Submit</button>
             </form>
           );

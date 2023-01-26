@@ -1,37 +1,34 @@
 import React from "react";
 import "./styles.css";
-import { FormikProps } from "formik";
 import { get } from "lodash";
 import clsx from "clsx";
+import { FieldProps } from "../../Types";
 
 export interface Option {
   value: string;
   label: string;
 }
 
-export interface FieldProps {
+export interface CheckboxFieldProps {
   options: Option[];
   name: string;
   header?: string;
   helperText?: string;
   column?: boolean;
 }
-interface CheckBoxProps {
-  formikProps: FormikProps<{ gender: string[]; placed: string[] }>;
-  fieldProps: FieldProps;
+interface CheckBoxProps extends FieldProps {
+  fieldProps: CheckboxFieldProps;
 }
 
 const CheckBox: React.FC<CheckBoxProps> = ({ formikProps, fieldProps }) => {
   const fieldValue: string[] =
     get(formikProps, `values.${fieldProps.name}`) || [];
-  console.log(fieldProps.name, fieldValue);
 
-  const fieldError = get(formikProps, `errors.${fieldProps.name}`);
-  console.log(formikProps);
-  console.log(fieldError);
+  const fieldError = get(formikProps, `errors.${fieldProps.name}`) as string;
   const { options = [], name, helperText, column = false } = fieldProps;
+
   return (
-    <div className="checkbox-field other-class">
+    <div className={clsx("checkbox-field ", name)}>
       <span className="checkbox-header">{fieldProps.header}</span>
       <div
         className={clsx("checkbox-container", column ? "column" : undefined)}

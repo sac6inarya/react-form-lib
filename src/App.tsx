@@ -1,6 +1,6 @@
 import "./App.css";
 import { Formik } from "formik";
-import Switch, { SwitchFieldProps } from "./components/Checkbox/Switch";
+import Switch, { SwitchFieldProps } from "./components/Switch";
 
 const onOrOff: SwitchFieldProps = {
   name: "switchValue",

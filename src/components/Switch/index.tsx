@@ -1,5 +1,5 @@
 import React from "react";
-import { FieldProps } from "../../../Types";
+import { FieldProps } from "../../Types";
 import "./styles.css";
 import { get } from "lodash";
 

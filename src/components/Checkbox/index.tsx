@@ -50,9 +50,9 @@ const CheckBox: React.FC<CheckBoxProps> = ({ formikProps, fieldProps }) => {
       {(fieldError || helperText) && (
         <div>
           {fieldError ? (
-            <span className="error">{fieldError}</span>
+            <span className="error checkboxerror">{fieldError}</span>
           ) : (
-            <span className="helper-text">{helperText} </span>
+            <span className="helper-text helpertext">{helperText} </span>
           )}
         </div>
       )}

@@ -33,7 +33,7 @@ const Switch: React.FC<SwithcProps> = ({ formikProps, fieldProps }) => {
         />
         <span className="slider round"></span>
       </label>
-      <span className="helper-text">{helperText}</span>
+      <span className="helper-text helpertext">{helperText}</span>
     </div>
   );
 };

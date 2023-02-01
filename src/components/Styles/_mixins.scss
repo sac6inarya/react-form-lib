@@ -1,0 +1,18 @@
+@mixin componentField() {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+}
+
+@mixin componentHeader(){
+    color: $headerTextColor;
+    @extend %header-text-size-opecity;
+}
+ 
+@mixin column{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

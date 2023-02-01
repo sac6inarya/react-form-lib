@@ -2,14 +2,16 @@ import React from "react";
 import { getFieldError } from "../../Utils";
 import { FieldProps, Option } from "../../Types";
 import { isString } from "lodash";
-import "./styles.css";
+import "./index.scss";
 
 export interface SelectFProps {
   name: string;
-  label?: string;
+  header?: string;
   options?: Option[];
   emptyItem?: string | boolean;
   helperText?: string;
+  disabled?: boolean;
+  nativeInputProps?: React.InputHTMLAttributes<object>;
 }
 interface SelectFieldProps extends FieldProps {
   fieldProps: SelectFProps;
@@ -19,9 +21,9 @@ const SelectField: React.FC<SelectFieldProps> = ({
   fieldProps,
   formikProps,
 }) => {
-  const { name, label, options = [], emptyItem, helperText } = fieldProps;
+  const { name, header, options = [], emptyItem, helperText } = fieldProps;
   const fieldError = getFieldError(name, formikProps) || "";
-  const emptyItemText = isString(emptyItem) ? emptyItem : "Empty";
+  const emptyItemText = isString(emptyItem) ? emptyItem : "No option selected";
 
   console.log(fieldError, emptyItemText);
   const optionList = emptyItem
@@ -30,11 +32,15 @@ const SelectField: React.FC<SelectFieldProps> = ({
 
   return (
     <div className="select-field">
-      <label htmlFor={name} className="select-label">
-        {label}
+      <label htmlFor={name} className="select-field-header">
+        {header}
       </label>
       <div className="select-container">
-        <select id={name} onChange={formikProps.handleChange}>
+        <select
+          id={name}
+          onChange={formikProps.handleChange}
+          className="select-option"
+        >
           {optionList.map((it) => {
             return (
               <option key={it.value} value={it.value}>
@@ -46,13 +52,13 @@ const SelectField: React.FC<SelectFieldProps> = ({
       </div>
 
       {(helperText || fieldError) && (
-        <span>
+        <div>
           {fieldError ? (
-            <span className="select-error error">{fieldError}</span>
+            <span className="select-field-error error">{fieldError}</span>
           ) : (
             <span className="helper-text helpertext">{helperText}</span>
           )}
-        </span>
+        </div>
       )}
     </div>
   );

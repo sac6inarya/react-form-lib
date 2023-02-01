@@ -1,0 +1,27 @@
+@import "../Styles/variables";
+@import "../Styles/mixins";
+@import "../Styles/extends";
+
+.select-field {
+    @include componentField;
+}
+
+.select-field-header {
+    @include componentHeader;
+}
+
+.select-option{
+    width: 200px;
+    height: 30px;
+}
+
+.helper-text {
+    color: $helperTextColor;
+    @extend %helper-error-text-size-opecity;
+    
+}
+
+.select-field-error {
+    color: $errorTextColor;
+    @extend %helper-error-text-size-opecity;
+}

@@ -1,0 +1,25 @@
+@import "../Styles/variables";
+@import "../Styles/mixins";
+@import "../Styles/extends";
+
+.checkbox-field {
+    @include componentField;
+}
+
+.checkbox-header {
+    @include componentHeader;
+}
+
+.column{
+    @include column;
+}
+
+.checkbox-error {
+    color: $errorTextColor;
+    @extend %helper-error-text-size-opecity;
+}
+
+.helper-text {
+    color: $helperTextColor;
+    @extend %helper-error-text-size-opecity;
+}

@@ -1,0 +1,23 @@
+@import "../Styles/variables";
+@import "../Styles/mixins";
+@import "../Styles/extends";
+
+.file-input-field {
+    @include componentField;
+}
+
+.file-input-header {
+    @include componentHeader;
+}
+
+
+.helper-text {
+    color: $helperTextColor;
+    @extend %helper-error-text-size-opecity;
+
+}
+
+.file-input-error {
+    color: $errorTextColor;
+    @extend %helper-error-text-size-opecity;
+}

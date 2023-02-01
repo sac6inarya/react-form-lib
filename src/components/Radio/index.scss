@@ -1,0 +1,28 @@
+@import "../Styles/variables";
+@import "../Styles/mixins";
+@import "../Styles/extends";
+
+.radio-field {
+    @include componentField;
+}
+
+.radio-header {
+    @include componentHeader;
+}
+
+
+.column{
+    @include column;
+}
+
+
+.radio-error {
+    color: $errorTextColor;
+    @extend %helper-error-text-size-opecity;
+
+}
+
+.helper-text {
+    color: $helperTextColor;
+    @extend %helper-error-text-size-opecity;
+}

@@ -1,12 +1,14 @@
 import React from "react";
 import { FieldProps } from "../../Types";
-import "./styles.css";
+import "./index.scss";
 import { get } from "lodash";
 
 export interface SwitchFieldProps {
   name?: string;
-  label?: string;
+  header?: string;
   helperText?: string;
+  disabled?: boolean;
+  nativeInputProps?: React.InputHTMLAttributes<object>;
 }
 
 interface SwithcProps extends FieldProps {
@@ -14,7 +16,7 @@ interface SwithcProps extends FieldProps {
 }
 
 const Switch: React.FC<SwithcProps> = ({ formikProps, fieldProps }) => {
-  const { label, name, helperText } = fieldProps;
+  const { header, name, helperText } = fieldProps;
 
   const fieldValue = get(formikProps, `values.${name}`);
   const handleOnChange = () => {
@@ -22,7 +24,7 @@ const Switch: React.FC<SwithcProps> = ({ formikProps, fieldProps }) => {
   };
   return (
     <div className="switch-field">
-      <span className="switch-label">{label}</span>
+      <span className="switch-header">{header}</span>
       <label className="switch-container">
         <input
           className="slider"

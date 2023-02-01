@@ -1,8 +1,9 @@
 import { get } from "lodash";
 import React from "react";
-import "./styles.css";
+import "./index.scss";
 import clsx from "clsx";
 import { FieldProps } from "../../Types";
+import { getFieldError } from "../../Utils";
 
 export interface Option {
   value: string;
@@ -15,6 +16,8 @@ export interface RadioFieldProps {
   header?: string;
   helperText?: string;
   column?: boolean;
+  disabled?: boolean;
+  nativeInputProps?: React.InputHTMLAttributes<object>;
 }
 interface RadioProps extends FieldProps {
   fieldProps: RadioFieldProps;
@@ -24,7 +27,7 @@ const Radio: React.FC<RadioProps> = ({ formikProps, fieldProps }) => {
   const { options = [], name, helperText, header, column } = fieldProps;
   const fieldValue: string = get(formikProps, `values.${name}`) || "";
 
-  const fieldError = get(formikProps, `errors.${name}`) as string;
+  const fieldError = getFieldError(name, formikProps) as string;
 
   return (
     <div className={clsx("radio-field", name)}>
@@ -48,7 +51,7 @@ const Radio: React.FC<RadioProps> = ({ formikProps, fieldProps }) => {
       {(fieldError || helperText) && (
         <span>
           {fieldError ? (
-            <span className="error radioerror">{fieldError}</span>
+            <span className="radio-error error">{fieldError}</span>
           ) : (
             <span className="helper-text helpertext">{helperText}</span>
           )}

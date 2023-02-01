@@ -65,7 +65,7 @@ const SwitchFP: SwitchFieldProps = {
 function App() {
   const validationSchema = Yup.object({
     gender: Yup.string().required("Required"),
-    books: Yup.array().min(1).required("Required"),
+    books: Yup.array().min(1, "Required").required("Required"),
     language: Yup.string().required("Required"),
     file: Yup.mixed().required("Required"),
     // switch: Yup.string().required("Required"),

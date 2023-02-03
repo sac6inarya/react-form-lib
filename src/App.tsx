@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.scss";
 import { Option } from "./Types/index";
-import { Formik } from "formik";
+import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 
 // import { ReactForm } from "react-forms";
@@ -62,6 +62,47 @@ const SwitchFP: SwitchFieldProps = {
   helperText: "Click for toggle",
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const formikProps = {} as FormikProps<any>;
+
+console.log(formikProps);
+
+const componentConfigMap: { [key: string]: JSX.Element } = {
+  radio: <Radio formikProps={formikProps} fieldProps={RadioFP} />,
+  checkbox: <CheckBox formikProps={formikProps} fieldProps={CheckBoxFP} />,
+  switch: <Switch formikProps={formikProps} fieldProps={SwitchFP} />,
+  select: <SelectField fieldProps={SelectFP} formikProps={formikProps} />,
+  fileinput: <FileInput formikProps={formikProps} fieldProps={FileInputFP} />,
+};
+
+const config = [
+  {
+    type: "radio",
+    fieldProps: RadioFP,
+    valueKey: "gender",
+  },
+  {
+    type: "checkbox",
+    fieldProps: CheckBoxFP,
+    valueKey: "books",
+  },
+  {
+    type: "switch",
+    fieldProps: SwitchFP,
+    valueKey: "toggle",
+  },
+  {
+    type: "select",
+    fieldProps: SelectFP,
+    valueKey: "languages",
+  },
+  {
+    type: "fileinput",
+    fieldProps: FileInputFP,
+    valueKey: "files",
+  },
+];
+
 function App() {
   const validationSchema = Yup.object({
     gender: Yup.string().required("Required"),
@@ -84,11 +125,21 @@ function App() {
         {(formikProps) => {
           return (
             <form onSubmit={formikProps.handleSubmit}>
-              <CheckBox formikProps={formikProps} fieldProps={CheckBoxFP} />
+              {config.map((it) => {
+                return (
+                  <div key={it.valueKey}>
+                    {React.cloneElement(componentConfigMap[it.type], {
+                      formikProps,
+                      fieldProps: it.fieldProps,
+                    })}
+                  </div>
+                );
+              })}
+              {/* <CheckBox formikProps={formikProps} fieldProps={CheckBoxFP} />
               <Radio formikProps={formikProps} fieldProps={RadioFP} />
               <Switch formikProps={formikProps} fieldProps={SwitchFP} />
               <SelectField fieldProps={SelectFP} formikProps={formikProps} />
-              <FileInput formikProps={formikProps} fieldProps={FileInputFP} />
+              <FileInput formikProps={formikProps} fieldProps={FileInputFP} /> */}
               <button type="submit" className="">
                 Submit
               </button>

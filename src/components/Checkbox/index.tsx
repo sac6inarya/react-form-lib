@@ -4,6 +4,7 @@ import { get } from "lodash";
 import clsx from "clsx";
 import { FieldProps } from "../../Types";
 import { getFieldError } from "../../Utils";
+import { FormikValues } from "formik";
 
 export interface Option {
   value: string;
@@ -20,10 +21,14 @@ export interface CheckboxFieldProps {
   nativeInputProps?: React.InputHTMLAttributes<object>;
 }
 interface CheckBoxProps extends FieldProps {
-  fieldProps: CheckboxFieldProps;
+  fieldProps?: CheckboxFieldProps;
 }
 
-const CheckBox: React.FC<CheckBoxProps> = ({ formikProps, fieldProps }) => {
+const CheckBox: React.FC<CheckBoxProps> = (props) => {
+  const {
+    formikProps = {} as FormikValues,
+    fieldProps = {} as CheckboxFieldProps,
+  } = props;
   const { options = [], name, header, helperText, column = false } = fieldProps;
 
   const fieldValue: string[] = get(formikProps, `values.${name}`) || [] || "";

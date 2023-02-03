@@ -7,6 +7,7 @@ import {
 } from "../../Utils";
 import { FieldProps } from "../../Types";
 import "./index.scss";
+import { FormikValues } from "formik";
 
 export interface TFile {
   name: string;
@@ -37,10 +38,14 @@ export interface FileInputField {
   inputClasses?: string | string[];
 }
 interface FileInputProps extends FieldProps {
-  fieldProps: FileInputField;
+  fieldProps?: FileInputField;
 }
 
-const FileInput: React.FC<FileInputProps> = ({ fieldProps, formikProps }) => {
+const FileInput: React.FC<FileInputProps> = (props) => {
+  const {
+    formikProps = {} as FormikValues,
+    fieldProps = {} as FileInputField,
+  } = props;
   const {
     name,
     onDone,

@@ -1,7 +1,8 @@
 import { FormikProps } from "formik";
 
 export interface FieldProps {
-  formikProps: FormikProps<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  formikProps?: FormikProps<any>;
 }
 
 export interface Option {

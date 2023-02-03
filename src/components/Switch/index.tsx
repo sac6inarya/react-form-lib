@@ -2,6 +2,7 @@ import React from "react";
 import { FieldProps } from "../../Types";
 import "./index.scss";
 import { get } from "lodash";
+import { FormikValues } from "formik";
 
 export interface SwitchFieldProps {
   name?: string;
@@ -12,10 +13,14 @@ export interface SwitchFieldProps {
 }
 
 interface SwithcProps extends FieldProps {
-  fieldProps: SwitchFieldProps;
+  fieldProps?: SwitchFieldProps;
 }
 
-const Switch: React.FC<SwithcProps> = ({ formikProps, fieldProps }) => {
+const Switch: React.FC<SwithcProps> = (props) => {
+  const {
+    formikProps = {} as FormikValues,
+    fieldProps = {} as SwitchFieldProps,
+  } = props;
   const { header, name, helperText } = fieldProps;
 
   const fieldValue = get(formikProps, `values.${name}`);

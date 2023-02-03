@@ -3,6 +3,7 @@ import { getFieldError } from "../../Utils";
 import { FieldProps, Option } from "../../Types";
 import { isString } from "lodash";
 import "./index.scss";
+import { FormikValues } from "formik";
 
 export interface SelectFProps {
   name: string;
@@ -14,13 +15,12 @@ export interface SelectFProps {
   nativeInputProps?: React.InputHTMLAttributes<object>;
 }
 interface SelectFieldProps extends FieldProps {
-  fieldProps: SelectFProps;
+  fieldProps?: SelectFProps;
 }
 
-const SelectField: React.FC<SelectFieldProps> = ({
-  fieldProps,
-  formikProps,
-}) => {
+const SelectField: React.FC<SelectFieldProps> = (props) => {
+  const { formikProps = {} as FormikValues, fieldProps = {} as SelectFProps } =
+    props;
   const { name, header, options = [], emptyItem, helperText } = fieldProps;
   const fieldError = getFieldError(name, formikProps) || "";
   const emptyItemText = isString(emptyItem) ? emptyItem : "No option selected";

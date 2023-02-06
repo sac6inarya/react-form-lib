@@ -249,6 +249,11 @@ export const MLFormAction: React.FC<
     // submitButtonProps,
     // loaderProps,
   } = props;
+
+  // useEffect(() => {
+  //   if (formikProps.isSubmitting === true) formikProps.isSubmitting = false;
+  // }, [formikProps.isSubmitting]);
+
   //   const classes = useFormStyles();
   if (props.actionContent)
     return React.cloneElement(props.actionContent || <div />, { formikProps });
@@ -263,19 +268,19 @@ export const MLFormAction: React.FC<
           formId,
         })
       ) : (
-        <>
-          <button
-            className="submit-btn"
-            type="submit"
-            disabled={formikProps.isSubmitting}
-            // variant="contained"
-            color="primary"
-            // {...submitButtonProps}
-          >
-            {submitButtonText}
-          </button>
-          {formikProps.isSubmitting && <div className="loader"></div>}
-        </>
+        <div className="submit-loader-container">
+          {formikProps.isSubmitting ? (
+            <div className="loader"></div>
+          ) : (
+            <button
+              className="submit-btn"
+              type="submit"
+              disabled={formikProps.isSubmitting}
+            >
+              {submitButtonText}
+            </button>
+          )}
+        </div>
       )}
     </div>
   );

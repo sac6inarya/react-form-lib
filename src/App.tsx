@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.scss";
 import { Option } from "./Types/index";
 import { Formik, FormikProps } from "formik";
@@ -10,6 +10,7 @@ import CheckBox, { CheckboxFieldProps } from "./components/Checkbox";
 import Switch, { SwitchFieldProps } from "./components/Switch";
 import SelectField, { SelectFProps } from "./components/Selectfield";
 import FileInput, { FileInputField } from "./components/Fileinput";
+import MLFormBuilder from "./components/Formbuilder";
 
 const genderoptions: Option[] = [
   { value: "male", label: "Male" },
@@ -76,21 +77,24 @@ const componentConfigMap: { [key: string]: JSX.Element } = {
 };
 
 const config = [
-  {
-    type: "radio",
-    fieldProps: RadioFP,
-    valueKey: "gender",
-  },
-  {
-    type: "checkbox",
-    fieldProps: CheckBoxFP,
-    valueKey: "books",
-  },
-  {
-    type: "switch",
-    fieldProps: SwitchFP,
-    valueKey: "toggle",
-  },
+  [
+    {
+      type: "radio",
+      fieldProps: RadioFP,
+      valueKey: "gender",
+    },
+    {
+      type: "checkbox",
+      fieldProps: CheckBoxFP,
+      valueKey: "books",
+    },
+
+    {
+      type: "switch",
+      fieldProps: SwitchFP,
+      valueKey: "toggle",
+    },
+  ],
   {
     type: "select",
     fieldProps: SelectFP,
@@ -104,45 +108,65 @@ const config = [
 ];
 
 function App() {
+  const [loading, setLoading] = useState(false);
   const validationSchema = Yup.object({
     gender: Yup.string().required("Required"),
     books: Yup.array().min(1, "Required").required("Required"),
     language: Yup.string().required("Required"),
-    file: Yup.mixed().required("Required"),
+    // file: Yup.mixed().required("Required"),
   });
 
   const initialValues = {};
+  const onSubmit = (values: any) => {
+    console.log(values);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  };
+
   return (
     <div className="App">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={onSubmit}
       >
         {(formikProps) => {
           return (
-            <form onSubmit={formikProps.handleSubmit}>
-              {config.map((it) => {
-                return (
-                  <div key={it.valueKey}>
-                    {React.cloneElement(componentConfigMap[it.type], {
-                      formikProps,
-                      fieldProps: it.fieldProps,
-                    })}
-                  </div>
-                );
-              })}
-              {/* <CheckBox formikProps={formikProps} fieldProps={CheckBoxFP} />
-              <Radio formikProps={formikProps} fieldProps={RadioFP} />
-              <Switch formikProps={formikProps} fieldProps={SwitchFP} />
-              <SelectField fieldProps={SelectFP} formikProps={formikProps} />
-              <FileInput formikProps={formikProps} fieldProps={FileInputFP} /> */}
-              <button type="submit" className="">
-                Submit
-              </button>
-            </form>
+            // <form onSubmit={formikProps.handleSubmit}>
+            //   {config.map((it) => {
+            //     return (
+            //       <div key={it.valueKey}>
+            //         {React.cloneElement(componentConfigMap[it.type], {
+            //           formikProps,
+            //           fieldProps: it.fieldProps,
+            //         })}
+            //       </div>
+            //     );
+            //   })}
+            //   {/* <CheckBox formikProps={formikProps} fieldProps={CheckBoxFP} />
+            //   <Radio formikProps={formikProps} fieldProps={RadioFP} />
+            //   <Switch formikProps={formikProps} fieldProps={SwitchFP} />
+            //   <SelectField fieldProps={SelectFP} formikProps={formikProps} />
+            //   <FileInput formikProps={formikProps} fieldProps={FileInputFP} /> */}
+            //   <button type="submit" className="">
+            //     Submit
+            //   </button>
+            // </form>
+
+            <MLFormBuilder
+              schema={config}
+              actionConfig={{
+                submitButtonLayout: "right",
+              }}
+              isInProgress={loading}
+              formId={"name"}
+              // actionConfig={actionConfig}
+              settings={{ verticalSpacing: 24, horizontalSpacing: 24 }}
+              formikProps={formikProps}
+              // isInProgress={isInProgress}
+            />
           );
         }}
       </Formik>

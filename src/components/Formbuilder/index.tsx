@@ -7,6 +7,10 @@ import Radio from "../Radio";
 import SelectField from "../Selectfield";
 import Switch from "../Switch";
 import FileInput from "../Fileinput";
+import Password from "../Password";
+import PhoneField from "../PhoneField";
+import ArrayField from "../FieldArray";
+import TextField from "../TextField";
 
 import "./index.scss";
 
@@ -120,6 +124,10 @@ attachField("checkbox", <CheckBox />);
 attachField("switch", <Switch />);
 attachField("radio", <Radio />);
 attachField("file", <FileInput />);
+attachField("phone", <PhoneField />);
+attachField("array", <ArrayField />);
+attachField("password", <Password />);
+attachField("text", <TextField />);
 
 export const BuildFormRow: React.FC<FormRowProps> = (props) => {
   const {
@@ -147,7 +155,7 @@ export const BuildFormRow: React.FC<FormRowProps> = (props) => {
   const rowStyle = { marginBottom: rowSettings.verticalSpacing || 10 };
   return (
     <div className="row" style={rowStyle}>
-      {map(colItems, (item: FormConfig, index) => {
+      {map(colItems, (item: FormConfig, index: number) => {
         const componentConfig = ComponentMapConfig[item.type];
         const horizontalSpacing =
           index === colItems.length - 1
@@ -258,6 +266,7 @@ export const MLFormAction: React.FC<
   if (props.actionContent)
     return React.cloneElement(props.actionContent || <div />, { formikProps });
   const layoutClassName = `action-${submitButtonLayout}`;
+
   return (
     <div
       className={clsx("actionContainer", layoutClassName, containerClassNames)}
@@ -268,14 +277,23 @@ export const MLFormAction: React.FC<
           formId,
         })
       ) : (
-        <div className="submit-loader-container">
+        <div>
           {formikProps.isSubmitting ? (
             <div className="loader"></div>
           ) : (
             <button
-              className="submit-btn"
+              className={clsx(
+                "submit-btn",
+                submitButtonLayout === "fullWidth"
+                  ? "action-fullwidth"
+                  : undefined
+              )}
               type="submit"
               disabled={formikProps.isSubmitting}
+
+              // variant="contained"
+              // color="primary"
+              // {...submitButtonProps}
             >
               {submitButtonText}
             </button>

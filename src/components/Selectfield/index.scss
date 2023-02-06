@@ -11,8 +11,7 @@
 }
 
 .select-option{
-    width: 200px;
-    height: 30px;
+    @include selectoption;
 }
 
 .helper-text {

@@ -5,11 +5,11 @@ import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 
 // import { ReactForm } from "react-forms";
-import Radio, { RadioFieldProps } from "./components/Radio/index";
-import CheckBox, { CheckboxFieldProps } from "./components/Checkbox";
-import Switch, { SwitchFieldProps } from "./components/Switch";
-import SelectField, { SelectFProps } from "./components/Selectfield";
-import FileInput, { FileInputField } from "./components/Fileinput";
+import { RadioFieldProps } from "./components/Radio/index";
+import { CheckboxFieldProps } from "./components/Checkbox";
+import { SwitchFieldProps } from "./components/Switch";
+import { SelectFProps } from "./components/Selectfield";
+import { FileInputField } from "./components/Fileinput";
 import MLFormBuilder from "./components/Formbuilder";
 
 const genderoptions: Option[] = [
@@ -68,13 +68,13 @@ const formikProps = {} as FormikProps<any>;
 
 console.log(formikProps);
 
-const componentConfigMap: { [key: string]: JSX.Element } = {
-  radio: <Radio formikProps={formikProps} fieldProps={RadioFP} />,
-  checkbox: <CheckBox formikProps={formikProps} fieldProps={CheckBoxFP} />,
-  switch: <Switch formikProps={formikProps} fieldProps={SwitchFP} />,
-  select: <SelectField fieldProps={SelectFP} formikProps={formikProps} />,
-  fileinput: <FileInput formikProps={formikProps} fieldProps={FileInputFP} />,
-};
+// const componentConfigMap: { [key: string]: JSX.Element } = {
+//   radio: <Radio formikProps={formikProps} fieldProps={RadioFP} />,
+//   checkbox: <CheckBox formikProps={formikProps} fieldProps={CheckBoxFP} />,
+//   switch: <Switch formikProps={formikProps} fieldProps={SwitchFP} />,
+//   select: <SelectField fieldProps={SelectFP} formikProps={formikProps} />,
+//   fileinput: <FileInput formikProps={formikProps} fieldProps={FileInputFP} />,
+// };
 
 const config = [
   [
@@ -117,6 +117,7 @@ function App() {
   });
 
   const initialValues = {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (values: any) => {
     console.log(values);
     setLoading(true);

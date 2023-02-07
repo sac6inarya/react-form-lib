@@ -1,22 +1,15 @@
 import React, { useState } from "react";
 import "./App.scss";
 import { Option } from "./Types/index";
-import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 
-// import { ReactForm } from "react-forms";
 import { RadioFieldProps } from "./components/Radio/index";
 import { CheckboxFieldProps } from "./components/Checkbox";
 import { SwitchFieldProps } from "./components/Switch";
 import { SelectFProps } from "./components/Selectfield";
 import { FileInputField } from "./components/Fileinput";
-// import { PasswordFieldProps } from "./components/Password";
-// import { PhoneFieldProps } from "./components/PhoneField";
-// import { FieldArrayProps } from "./components/FieldArray";
-// import { TextFieldProps } from "./components/TextField";
-import ReactForm from "./components/ReactForm";
 
-import MLFormBuilder from "./components/Formbuilder";
+import ReactForm from "./components/ReactForm";
 
 const genderoptions: Option[] = [
   { value: "male", label: "Male" },
@@ -69,19 +62,6 @@ const SwitchFP: SwitchFieldProps = {
   helperText: "Click for toggle",
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const formikProps = {} as FormikProps<any>;
-
-console.log(formikProps);
-
-// const componentConfigMap: { [key: string]: JSX.Element } = {
-//   radio: <Radio formikProps={formikProps} fieldProps={RadioFP} />,
-//   checkbox: <CheckBox formikProps={formikProps} fieldProps={CheckBoxFP} />,
-//   switch: <Switch formikProps={formikProps} fieldProps={SwitchFP} />,
-//   select: <SelectField fieldProps={SelectFP} formikProps={formikProps} />,
-//   fileinput: <FileInput formikProps={formikProps} fieldProps={FileInputFP} />,
-// };
-
 const config = [
   [
     {
@@ -129,7 +109,6 @@ const config = [
     fieldProps: {
       header: "Password",
       helperText: "Enter your password",
-      // width: "full",
     },
   },
 
@@ -139,7 +118,6 @@ const config = [
     fieldProps: {
       header: "Confirm password",
       helperText: "Confirm your password",
-      // width: "full",
     },
   },
   {
@@ -148,7 +126,6 @@ const config = [
     fieldProps: {
       header: "phone No. ",
       helperText: "Enter your phone no.",
-      // itemType: "string",
     },
   },
   {
@@ -166,6 +143,7 @@ const config = [
 
 function App() {
   const [loading, setLoading] = useState(false);
+
   const validationSchema = Yup.object({
     gender: Yup.string().required("Required"),
     books: Yup.array().min(1, "Required").required("Required"),
@@ -190,23 +168,17 @@ function App() {
   });
 
   const initialValues = {};
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (values: any) => {
-    console.log(values);
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  };
-
   return (
     <div className="App">
       <ReactForm
         config={config}
         initialValues={initialValues}
+        isInProgress={loading}
         validationSchema={validationSchema}
         onSubmit={(values: object) => {
+          setLoading(true);
           console.log(values);
+          setTimeout(() => setLoading(false), 2000);
         }}
       />
     </div>

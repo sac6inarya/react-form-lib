@@ -10,11 +10,11 @@
 }
 .text-error  {
     color: $errorTextColor;
-    @extend %helper-error-text-size-opecity;
+    @extend %helper-error-text-size-opacity;
 }
 .text-helper {
     color: $helperTextColor;
-    @extend %helper-error-text-size-opecity;
+    @extend %helper-error-text-size-opacity;
 }
 .input-box{
     @include inputbox;

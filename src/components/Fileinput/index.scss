@@ -13,11 +13,11 @@
 
 .helper-text {
     color: $helperTextColor;
-    @extend %helper-error-text-size-opecity;
+    @extend %helper-error-text-size-opacity;
 
 }
 
 .file-input-error {
     color: $errorTextColor;
-    @extend %helper-error-text-size-opecity;
+    @extend %helper-error-text-size-opacity;
 }

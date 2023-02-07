@@ -10,11 +10,11 @@
 }
 .password-error  {
     color: $errorTextColor;
-    @extend %helper-error-text-size-opecity;
+    @extend %helper-error-text-size-opacity;
 }
 .password-helper{
     color: $helperTextColor;
-    @extend %helper-error-text-size-opecity;
+    @extend %helper-error-text-size-opacity;
 }
 .input-box{
     @include inputbox;

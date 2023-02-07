@@ -11,11 +11,11 @@
 
 .phonefield-helper{
     color: $helperTextColor;
-    @extend %helper-error-text-size-opecity;
+    @extend %helper-error-text-size-opacity;
 }
 .phonefield-error{
     color: $errorTextColor;
-    @extend %helper-error-text-size-opecity;
+    @extend %helper-error-text-size-opacity;
 }
 
 .phonefield-container{

@@ -10,9 +10,9 @@
   .loader {
   height: 0;
   width: 0;
-  border: 8px solid #ccc;
+  border: 6px solid $headerTextColor;
+  border-bottom-color: #ccc;
   padding: 10px;
-  border-right-color: $headerTextColor;
   border-radius:50%;
   animation: rotate 1s infinite linear;
   top: 50%;

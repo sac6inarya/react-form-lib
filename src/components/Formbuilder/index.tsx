@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { FormikProps } from "formik";
 import { get, isArray, isFunction, map, uniqueId } from "lodash";
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import CheckBox from "../Checkbox";
 import Radio from "../Radio";
 import SelectField from "../Selectfield";
@@ -18,9 +18,6 @@ import {
   getConditionalProps,
   TFieldConditions,
 } from "../ConditionalOperations";
-
-const { useEffect, useState } = React;
-
 export interface ReadOnlyProps {
   renderer: (props: FieldProps) => React.ReactNode;
 }
@@ -60,12 +57,10 @@ export interface FormRowProps<T = any> {
 type submitButtonLayout = "right" | "center" | "fullWidth";
 export interface FormActionProps {
   submitButtonText?: string;
-  //   submitButtonProps?: ButtonProps;
   submitButtonLayout?: submitButtonLayout;
   actionContent?: JSX.Element;
   containerClassNames?: string | string[];
   displayActions?: boolean;
-  //   loaderProps?: CircularProgressProps;
 }
 export interface BuilderProps<T = any> {
   schema: Array<RowSchema>;
@@ -144,14 +139,13 @@ export const BuildFormRow: React.FC<FormRowProps> = (props) => {
   const columnItems = get(schema, "columns") as unknown as Array<FormConfig>;
   const rowSettings = {
     ...settings,
-    // ...get(schema, "settings"),
   } as RowSettingsProps;
   const colItems = isArray(schema)
     ? schema
     : isArray(columnItems)
     ? columnItems
     : [schema];
-  //   const classes = useFormStyles();
+
   const rowStyle = { marginBottom: rowSettings.verticalSpacing || 10 };
   return (
     <div className="row" style={rowStyle}>
@@ -254,15 +248,8 @@ export const MLFormAction: React.FC<
     containerClassNames,
     submitButtonLayout = "center",
     submitButtonText = "Submit",
-    // submitButtonProps,
-    // loaderProps,
   } = props;
 
-  // useEffect(() => {
-  //   if (formikProps.isSubmitting === true) formikProps.isSubmitting = false;
-  // }, [formikProps.isSubmitting]);
-
-  //   const classes = useFormStyles();
   if (props.actionContent)
     return React.cloneElement(props.actionContent || <div />, { formikProps });
   const layoutClassName = `action-${submitButtonLayout}`;
@@ -290,10 +277,6 @@ export const MLFormAction: React.FC<
               )}
               type="submit"
               disabled={formikProps.isSubmitting}
-
-              // variant="contained"
-              // color="primary"
-              // {...submitButtonProps}
             >
               {submitButtonText}
             </button>
@@ -310,6 +293,7 @@ export const MLFormBuilder: React.FC<BuilderProps> = (props) => {
     isInProgress = false,
     actionConfig = {} as FormActionProps,
   } = props;
+
   useEffect(() => {
     if (isInProgress === false) formikProps.setSubmitting(false);
   }, [isInProgress]);

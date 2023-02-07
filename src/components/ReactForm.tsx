@@ -3,11 +3,11 @@ import { Formik, FormikValues } from "formik";
 import MLFormBuilder from "../components/Formbuilder";
 export * from "../components/Formbuilder";
 export interface ReactFormProps extends FormikValues {
-  //   config: Array<RowSchema>;
   formId?: string;
   isInProgress?: boolean;
   isReadOnly?: boolean;
 }
+
 export const ReactForm: React.FC<ReactFormProps> = (props) => {
   const {
     config,
@@ -20,6 +20,7 @@ export const ReactForm: React.FC<ReactFormProps> = (props) => {
     isReadOnly = false,
     ...formikProps
   } = props;
+
   return (
     <div>
       <Formik

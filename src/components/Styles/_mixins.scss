@@ -8,7 +8,7 @@
 
 @mixin componentHeader(){
     color: $headerTextColor;
-    @extend %header-text-size-opecity;
+    @extend %header-text-size-opacity;
 }
  
 @mixin column{

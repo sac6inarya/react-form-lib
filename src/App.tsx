@@ -10,6 +10,11 @@ import { CheckboxFieldProps } from "./components/Checkbox";
 import { SwitchFieldProps } from "./components/Switch";
 import { SelectFProps } from "./components/Selectfield";
 import { FileInputField } from "./components/Fileinput";
+// import { PasswordFieldProps } from "./components/Password";
+// import { PhoneFieldProps } from "./components/PhoneField";
+// import { FieldArrayProps } from "./components/FieldArray";
+// import { TextFieldProps } from "./components/TextField";
+
 import MLFormBuilder from "./components/Formbuilder";
 
 const genderoptions: Option[] = [
@@ -101,9 +106,60 @@ const config = [
     valueKey: "languages",
   },
   {
-    type: "fileinput",
+    type: "file",
     fieldProps: FileInputFP,
     valueKey: "files",
+  },
+
+  {
+    type: "text",
+    valueKey: "name",
+    fieldProps: {
+      header: "Enter your Name",
+      helperText: "Enter your text",
+      width: "full",
+      fullWidth: true,
+    },
+  },
+
+  {
+    type: "password",
+    valueKey: "Password",
+    fieldProps: {
+      header: "Password",
+      helperText: "Enter your password",
+      // width: "full",
+    },
+  },
+
+  {
+    type: "password",
+    valueKey: "confirmPass",
+    fieldProps: {
+      header: "Confirm password",
+      helperText: "Confirm your password",
+      // width: "full",
+    },
+  },
+  {
+    type: "phone",
+    valueKey: "phoneNo",
+    fieldProps: {
+      header: "phone No. ",
+      helperText: "Enter your phone no.",
+      // itemType: "string",
+    },
+  },
+  {
+    type: "array",
+    valueKey: "array",
+    fieldProps: {
+      itemType: "text",
+      defaultItemValue: "",
+      arrayItemFieldProps: {
+        header: "Header text",
+      },
+    },
   },
 ];
 
@@ -113,7 +169,20 @@ function App() {
     gender: Yup.string().required("Required"),
     books: Yup.array().min(1, "Required").required("Required"),
     language: Yup.string().required("Required"),
-    // file: Yup.mixed().required("Required"),
+    file: Yup.mixed().required("Required"),
+
+    name: Yup.string().required("Text Required"),
+    Password: Yup.string()
+      .min(5, "Password must be 5 characters long")
+      .matches(/[a-z]/, "Password requires a lowercase letter")
+      .matches(/[A-Z]/, "Password requires an uppercase letter")
+      .matches(/[0-9]/, "Password requires a number")
+      .matches(/[^\w]/, "Password requires a symbol")
+      .required("Password Required"),
+    confirmPass: Yup.string()
+      .oneOf([Yup.ref("Password"), null], ' "Password" did not match ')
+      .required("Required"),
+    phoneNo: Yup.string().required("Phone number is required"),
   });
 
   const initialValues = {};
@@ -159,7 +228,7 @@ function App() {
             <MLFormBuilder
               schema={config}
               actionConfig={{
-                submitButtonLayout: "right",
+                submitButtonLayout: "fullWidth",
               }}
               isInProgress={loading}
               formId={"name"}

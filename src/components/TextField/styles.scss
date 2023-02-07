@@ -1,0 +1,24 @@
+@import "../Styles/variables";
+@import "../Styles/mixins";
+@import "../Styles/extends";
+
+.text-field{
+    @include componentField; 
+}
+.text-header {
+    @include componentHeader;
+}
+.text-error  {
+    color: $errorTextColor;
+    @extend %helper-error-text-size-opecity;
+}
+.text-helper {
+    color: $helperTextColor;
+    @extend %helper-error-text-size-opecity;
+}
+.input-box{
+    @include inputbox;
+}
+
+
+

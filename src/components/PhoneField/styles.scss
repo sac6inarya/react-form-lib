@@ -1,0 +1,31 @@
+@import "../Styles/variables";
+@import "../Styles/mixins";
+@import "../Styles/extends";
+
+.phone-field{
+    @include componentField;
+}
+.phonefield-header{
+    @include componentHeader;   
+}
+
+.phonefield-helper{
+    color: $helperTextColor;
+    @extend %helper-error-text-size-opecity;
+}
+.phonefield-error{
+    color: $errorTextColor;
+    @extend %helper-error-text-size-opecity;
+}
+
+.phonefield-container{
+    display: flex;
+}
+.phonefield-select{
+    @include selectoption;
+    width: 120px;
+}
+.phonefield-input{
+    @include inputbox;
+}
+

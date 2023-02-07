@@ -1,0 +1,21 @@
+@import "../Styles/variables";
+@import "../Styles/mixins";
+@import "../Styles/extends";
+
+.password-field{
+    @include componentField;
+}
+.password-header {
+    @include componentHeader;   
+}
+.password-error  {
+    color: $errorTextColor;
+    @extend %helper-error-text-size-opecity;
+}
+.password-helper{
+    color: $helperTextColor;
+    @extend %helper-error-text-size-opecity;
+}
+.input-box{
+    @include inputbox;
+}

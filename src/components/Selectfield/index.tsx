@@ -25,7 +25,7 @@ const SelectField: React.FC<SelectFieldProps> = (props) => {
   const fieldError = getFieldError(name, formikProps) || "";
   const emptyItemText = isString(emptyItem) ? emptyItem : "No option selected";
 
-  console.log(fieldError, emptyItemText);
+  // console.log(fieldError, emptyItemText);
   const optionList = emptyItem
     ? [{ value: "", label: emptyItemText }, ...options]
     : options;

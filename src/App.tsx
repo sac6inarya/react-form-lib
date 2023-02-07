@@ -14,6 +14,7 @@ import { FileInputField } from "./components/Fileinput";
 // import { PhoneFieldProps } from "./components/PhoneField";
 // import { FieldArrayProps } from "./components/FieldArray";
 // import { TextFieldProps } from "./components/TextField";
+import ReactForm from "./components/ReactForm";
 
 import MLFormBuilder from "./components/Formbuilder";
 
@@ -183,6 +184,9 @@ function App() {
       .oneOf([Yup.ref("Password"), null], ' "Password" did not match ')
       .required("Required"),
     phoneNo: Yup.string().required("Phone number is required"),
+    array: Yup.array().of(
+      Yup.string().required("At least one string is required")
+    ),
   });
 
   const initialValues = {};
@@ -197,49 +201,14 @@ function App() {
 
   return (
     <div className="App">
-      <Formik
+      <ReactForm
+        config={config}
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        {(formikProps) => {
-          return (
-            // <form onSubmit={formikProps.handleSubmit}>
-            //   {config.map((it) => {
-            //     return (
-            //       <div key={it.valueKey}>
-            //         {React.cloneElement(componentConfigMap[it.type], {
-            //           formikProps,
-            //           fieldProps: it.fieldProps,
-            //         })}
-            //       </div>
-            //     );
-            //   })}
-            //   {/* <CheckBox formikProps={formikProps} fieldProps={CheckBoxFP} />
-            //   <Radio formikProps={formikProps} fieldProps={RadioFP} />
-            //   <Switch formikProps={formikProps} fieldProps={SwitchFP} />
-            //   <SelectField fieldProps={SelectFP} formikProps={formikProps} />
-            //   <FileInput formikProps={formikProps} fieldProps={FileInputFP} /> */}
-            //   <button type="submit" className="">
-            //     Submit
-            //   </button>
-            // </form>
-
-            <MLFormBuilder
-              schema={config}
-              actionConfig={{
-                submitButtonLayout: "fullWidth",
-              }}
-              isInProgress={loading}
-              formId={"name"}
-              // actionConfig={actionConfig}
-              settings={{ verticalSpacing: 24, horizontalSpacing: 24 }}
-              formikProps={formikProps}
-              // isInProgress={isInProgress}
-            />
-          );
+        onSubmit={(values: object) => {
+          console.log(values);
         }}
-      </Formik>
+      />
     </div>
   );
 }

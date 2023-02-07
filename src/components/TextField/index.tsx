@@ -28,7 +28,7 @@ const TextField: React.FC<TextFieldsProps> = (props) => {
   const { header, helperText, name, type, width } = fieldProps;
   const fieldValue = get(formikProps, `values.${name}`) as string;
   const fieldError = getFieldError(name || "", formikProps);
-  const errorFlag = !!fieldError;
+  // const errorFlag = !!fieldError;
 
   return (
     <div className="text-field">
@@ -44,10 +44,10 @@ const TextField: React.FC<TextFieldsProps> = (props) => {
           onChange={formikProps.handleChange}
         />
       </div>
-
-      {(errorFlag || helperText) && (
+      {console.log(formikProps)}
+      {(fieldError || helperText) && (
         <div className="label-error">
-          {errorFlag ? (
+          {fieldError ? (
             <span className="text-error error">{fieldError}</span>
           ) : (
             <span className="text-helper helpertext">{helperText} </span>

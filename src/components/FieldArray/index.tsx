@@ -3,10 +3,11 @@ import { get } from "lodash";
 import "./styles.scss";
 import { FieldArray, FieldArrayRenderProps, FormikValues } from "formik";
 import { FieldProps, getComponentConfig } from "../Formbuilder/index";
+import clsx from "clsx";
 
 export interface FieldArrayProps {
-  name: string;
-  header: string;
+  name?: string;
+  header?: string;
   itemType: string;
   helperText?: string;
   id?: string;
@@ -32,7 +33,7 @@ const ArrayField: React.FC<FieldsArrayprops> = (props) => {
   const {
     addButtonText = "Add",
     header,
-    name,
+    name = "",
     itemType,
     addButton,
     removeButton,
@@ -70,8 +71,10 @@ const ArrayField: React.FC<FieldsArrayprops> = (props) => {
   };
 
   return (
-    <div className="array-field">
-      {header && <label className="fieldarray-header">{header}</label>}
+    <div className={clsx("array-field", name)}>
+      {header && (
+        <label className="fieldarray-header fieldarrayheader">{header}</label>
+      )}
       <FieldArray
         name={name}
         render={(arrayHelpers) => (
@@ -79,7 +82,7 @@ const ArrayField: React.FC<FieldsArrayprops> = (props) => {
             {(values || []).map((value: any, index: number) => (
               <div
                 key={`${fieldProps.name}-${index}`}
-                className="fieldarray-box"
+                className="fieldarray-box fieldarray-box"
               >
                 {React.cloneElement(itemComponentConfig.component, {
                   itemIndex: index,
@@ -95,7 +98,7 @@ const ArrayField: React.FC<FieldsArrayprops> = (props) => {
                   removeButton
                 ) : (
                   <button
-                    className="array-remove-icon"
+                    className="array-remove-icon arrayremoveicon"
                     onClick={() => handleElementRemove(arrayHelpers, index)}
                   >
                     ➖{/* - */}
@@ -108,7 +111,7 @@ const ArrayField: React.FC<FieldsArrayprops> = (props) => {
             ) : (
               <button
                 type="button"
-                className="array-add-icon"
+                className="array-add-icon arrayaddicon"
                 onClick={() => handleElementAdd(arrayHelpers)}
               >
                 {addButtonText}

@@ -12,8 +12,8 @@ export interface Option {
 }
 
 export interface RadioFieldProps {
-  options: Option[];
-  name: string;
+  options?: Option[];
+  name?: string;
   header?: string;
   helperText?: string;
   column?: boolean;
@@ -29,14 +29,14 @@ const Radio: React.FC<RadioProps> = (props) => {
     formikProps = {} as FormikValues,
     fieldProps = {} as RadioFieldProps,
   } = props;
-  const { options = [], name, helperText, header, column } = fieldProps;
+  const { options = [], name = "", helperText, header, column } = fieldProps;
   const fieldValue: string = get(formikProps, `values.${name}`) || "";
 
   const fieldError = getFieldError(name, formikProps) as string;
 
   return (
     <div className={clsx("radio-field", name)}>
-      {<span className="radio-header">{header}</span>}
+      {header && <span className="radio-header radioheader">{header}</span>}
       <div className={clsx("radio-container", column ? "column" : undefined)}>
         {options.map((it) => (
           <span key={it.value} className="radio-label">

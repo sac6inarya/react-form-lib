@@ -8,6 +8,7 @@ import {
 import { FieldProps } from "../../Types";
 import "./index.scss";
 import { FormikValues } from "formik";
+import clsx from "clsx";
 
 export interface TFile {
   name: string;
@@ -18,7 +19,7 @@ export interface TFile {
 }
 
 export interface FileInputField {
-  name: string;
+  name?: string;
   header?: string;
   helperText?: string;
   readAs?: ReadAsType;
@@ -47,7 +48,7 @@ const FileInput: React.FC<FileInputProps> = (props) => {
     fieldProps = {} as FileInputField,
   } = props;
   const {
-    name,
+    name = "",
     onDone,
     multiple,
     disableDefaultTooltip,
@@ -83,13 +84,15 @@ const FileInput: React.FC<FileInputProps> = (props) => {
   };
 
   return (
-    <div className="file-input-field">
-      <label htmlFor={name} className="file-input-header">
-        {header}
-      </label>
+    <div className={clsx("file-input-field", name)}>
+      {header && (
+        <label htmlFor={name} className="file-input-header fileinputheader">
+          {header}
+        </label>
+      )}
 
       <input
-        className="file-input-input"
+        className="file-input-box"
         type="file"
         onChange={handleChange}
         id={name}

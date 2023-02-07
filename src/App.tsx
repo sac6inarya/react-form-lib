@@ -9,7 +9,8 @@ import { SwitchFieldProps } from "./components/Switch";
 import { SelectFProps } from "./components/Selectfield";
 import { FileInputField } from "./components/Fileinput";
 
-import ReactForm from "./components/ReactForm";
+// import ReactForm from "./components/ReactForm";
+import TestForm from "./components/TestForm";
 
 const genderoptions: Option[] = [
   { value: "male", label: "Male" },
@@ -170,7 +171,7 @@ function App() {
   const initialValues = {};
   return (
     <div className="App">
-      <ReactForm
+      <TestForm
         config={config}
         initialValues={initialValues}
         isInProgress={loading}

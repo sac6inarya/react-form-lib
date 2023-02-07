@@ -136,6 +136,7 @@ export const BuildFormRow: React.FC<FormRowProps> = (props) => {
       isReadOnly: false,
     },
   } = props;
+  //need modification in type of columnItems
   const columnItems = get(schema, "columns") as unknown as Array<FormConfig>;
   const rowSettings = {
     ...settings,

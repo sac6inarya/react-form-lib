@@ -12,8 +12,8 @@ export interface Option {
 }
 
 export interface CheckboxFieldProps {
-  options: Option[];
-  name: string;
+  options?: Option[];
+  name?: string;
   header?: string;
   helperText?: string;
   column?: boolean;
@@ -29,7 +29,13 @@ const CheckBox: React.FC<CheckBoxProps> = (props) => {
     formikProps = {} as FormikValues,
     fieldProps = {} as CheckboxFieldProps,
   } = props;
-  const { options = [], name, header, helperText, column = false } = fieldProps;
+  const {
+    options = [],
+    name = "",
+    header,
+    helperText,
+    column = false,
+  } = fieldProps;
 
   const fieldValue: string[] = get(formikProps, `values.${name}`) || [] || "";
 
@@ -37,7 +43,9 @@ const CheckBox: React.FC<CheckBoxProps> = (props) => {
 
   return (
     <div className={clsx("checkbox-field ", name)}>
-      <span className="checkbox-header">{header}</span>
+      {header && (
+        <span className="checkbox-header checkboxheader">{header}</span>
+      )}
       <div
         className={clsx("checkbox-container", column ? "column" : undefined)}
       >

@@ -3,6 +3,7 @@ import { FieldProps } from "../../Types";
 import "./index.scss";
 import { get } from "lodash";
 import { FormikValues } from "formik";
+import clsx from "clsx";
 
 export interface SwitchFieldProps {
   name?: string;
@@ -21,15 +22,15 @@ const Switch: React.FC<SwithcProps> = (props) => {
     formikProps = {} as FormikValues,
     fieldProps = {} as SwitchFieldProps,
   } = props;
-  const { header, name, helperText } = fieldProps;
+  const { header, name = "", helperText } = fieldProps;
 
   const fieldValue = get(formikProps, `values.${name}`);
   const handleOnChange = () => {
     formikProps.setFieldValue(`${name}`, !fieldValue);
   };
   return (
-    <div className="switch-field">
-      <span className="switch-header">{header}</span>
+    <div className={clsx("switch-field", name)}>
+      {header && <span className="switch-header switchheader">{header}</span>}
       <label className="switch-container">
         <input
           className="slider"

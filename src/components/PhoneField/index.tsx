@@ -5,6 +5,7 @@ import { CountryCodeFormat, COUNTRY_LIST } from "../Constants/CountryList";
 import { get } from "lodash";
 import { getFieldError } from "../../Utils";
 import { FormikValues } from "formik";
+import clsx from "clsx";
 
 export interface PhoneFieldProps {
   header?: string;
@@ -39,7 +40,7 @@ const PhoneField: React.FC<PhoneFieldsProps> = (props) => {
 
   const {
     header,
-    name,
+    name = "",
     helperText,
     emptyItem,
     emptyItemText,
@@ -55,7 +56,7 @@ const PhoneField: React.FC<PhoneFieldsProps> = (props) => {
     }
   }, [name]);
 
-  const newError = getFieldError(name || "", formikProps);
+  const newError = getFieldError(name, formikProps);
   const error = !!newError;
 
   const onChange = (
@@ -80,17 +81,16 @@ const PhoneField: React.FC<PhoneFieldsProps> = (props) => {
     if (formikProps && formikProps.handleBlur) formikProps?.handleBlur(e);
   };
 
-  // console.log(formikProps);
-
   return (
-    <div className="phone-field">
-      <label className="phonefield-header" id={name}>
+    <div className={clsx("phone-field", name)}>
+      <label className="phonefield-header phonefieldheader" id={name}>
         {countryCodeLabel || "Country code"}
       </label>
-      <div className="phonefield-container">
+
+      <div className="phonefield-container phonefieldcontainer">
         <div>
           <select
-            className="phonefield-select"
+            className="phonefield-select phonefieldselect"
             id={name}
             value={code}
             onChange={codeChange}
@@ -101,17 +101,15 @@ const PhoneField: React.FC<PhoneFieldsProps> = (props) => {
         </div>
         <input
           type="tel"
-          className="phonefield-input"
+          className="phonefield-input phonefieldinput"
           placeholder={`${header}`}
           name={name}
-          // onBlur={handleBlur}
           onBlur={formikProps.handleBlur}
           autoComplete="nope"
           value={value.split("-")[1] || ""}
           onChange={onChange}
         />
       </div>
-      {/* {error && <label className="phonefield-error error">{newError}</label>} */}
 
       {(error || helperText) && (
         <div className="label-error">

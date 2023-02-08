@@ -1,0 +1,57 @@
+@import "../Styles/variables";
+@import "../Styles/mixins";
+@import "../Styles/extends";
+
+body{
+    background-color: #e9e9e9;
+}
+
+.registration-field {
+    background-color: white;
+    border-radius: 5px;
+    padding: 35px;
+    margin: 25px;
+}
+.selecttitlewidth{
+    width: 100% !important;
+}
+
+.fnamewidth{
+    width: 100% !important;
+}
+.lnamewidth{
+    width: 100% !important;
+}
+.streedwidth{
+    width: 100% !important;
+}
+
+.postelwidth{
+    width: 100% !important;
+}
+.jobtitlewidth{
+    width: 100% !important;
+}
+
+.allergieswidth{
+    width: 100% !important;
+}
+.submitquestionswidht{
+    width: 100% !important;
+}
+.phonefield-select{
+    width: 100%;
+}
+.phonefield-input{
+    width: 200% !important;
+}
+
+
+
+
+
+
+
+
+
+

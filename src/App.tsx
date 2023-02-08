@@ -3,7 +3,7 @@ import "./App.scss";
 import { Option } from "./Types/index";
 import * as Yup from "yup";
 import { RadioFieldProps } from "./components/Radio/index";
-import { CheckboxFieldProps } from "./components/CheckBkox";
+import { CheckboxFieldProps } from "./components/CheckBox";
 import TestForm from "./components/TestForm";
 
 const rangeoptions: Option[] = [

@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { FormikProps } from "formik";
 import { get, isArray, isFunction, map, uniqueId } from "lodash";
 import React, { useEffect, useState } from "react";
-import CheckBox from "../CheckBkox";
+import CheckBox from "../CheckBox";
 import Radio from "../Radio";
 import SelectField from "../SelectField";
 import Switch from "../Switch";

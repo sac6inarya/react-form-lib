@@ -11,14 +11,18 @@
 
 .phonefield-container{
     display: flex;
+    width: 100%;
+}
+.phone-field-box{
+    width: 100%;
 }
 .phonefield-select{
-    @include selectoption;
-    width: 95px;
+    @extend %input-select-box;
+    width: 100px;
 }
 .phonefield-input{
+    @extend %input-select-box;
     margin-left: 5px;
-    @include inputbox;
-    width: 150px;
+    width: 145px;
 }
 

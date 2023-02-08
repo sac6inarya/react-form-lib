@@ -9,7 +9,9 @@
 .select-field-label {
     @include componentLabel;
 }
-
+.select-container {
+    width: 100%;
+}
 .select-option{
-    @include selectoption;
+    @extend %input-select-box;
 }

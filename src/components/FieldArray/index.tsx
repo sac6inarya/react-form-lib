@@ -39,6 +39,7 @@ const ArrayField: React.FC<FieldsArrayprops> = (props) => {
     arrayItemFieldProps = {},
     defaultItemValue = "",
     classNames,
+    width,
   } = fieldProps;
 
   const values = get(formikProps, `values.${name}`);
@@ -99,7 +100,8 @@ const ArrayField: React.FC<FieldsArrayprops> = (props) => {
                     className="array-remove-icon arrayremoveicon"
                     onClick={() => handleElementRemove(arrayHelpers, index)}
                   >
-                    ➖{/* - */}
+                    {/* - */}
+                    {<p style={{ fontSize: "8px" }}>❌</p>}
                   </button>
                 )}
               </div>

@@ -6,11 +6,12 @@ export interface FieldProps {
 
 export interface FieldItemProps {
   name: string;
-  id: string;
+  id?: string;
   label?: string;
   disabled?: boolean;
   classNames?: string | Array<string>;
   helperText?: string;
+  width?: string;
   nativeInputProps?: React.InputHTMLAttributes<object>;
 }
 

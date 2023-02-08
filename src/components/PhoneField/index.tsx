@@ -44,6 +44,7 @@ const PhoneField: React.FC<PhoneFieldsProps> = (props) => {
     emptyItemText,
     countryCodeLabel,
     classNames,
+    width,
     renderOption = handleRenderOption,
   } = fieldProps;
 
@@ -81,7 +82,7 @@ const PhoneField: React.FC<PhoneFieldsProps> = (props) => {
       </label>
 
       <div className="phonefield-container phonefieldcontainer">
-        <div>
+        <div className="phone-field-box phonefieldbox">
           <select
             className="phonefield-select phonefieldselect"
             id={name}
@@ -94,7 +95,7 @@ const PhoneField: React.FC<PhoneFieldsProps> = (props) => {
         </div>
         <input
           type="tel"
-          className="phonefield-input phonefieldinput"
+          className={clsx("phonefield-input phonefieldinput", width)}
           placeholder={`${label}`}
           name={name}
           onBlur={formikProps.handleBlur}

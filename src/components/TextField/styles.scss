@@ -9,5 +9,9 @@
     @include componentLabel;
 }
 .input-box{
-    @include inputbox;
+    @extend %input-select-box;
 }
+.text-field-box {
+    width: 100%;
+}
+  

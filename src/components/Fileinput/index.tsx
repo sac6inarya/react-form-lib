@@ -56,6 +56,7 @@ const FileInput: React.FC<FileInputProps> = (props) => {
     label,
     helperText,
     classNames,
+    width,
   } = fieldProps;
 
   const fieldError = getFieldError(name, formikProps);
@@ -88,7 +89,7 @@ const FileInput: React.FC<FileInputProps> = (props) => {
       )}
 
       <input
-        className="file-input-box"
+        className={clsx("file-input-box", width)}
         type="file"
         onChange={handleChange}
         id={name}

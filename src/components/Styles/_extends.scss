@@ -11,10 +11,19 @@
   font-size: $labelTextSize;
   background-color: $labelTextColor;
   border-radius: 4px;
-  color:#ccc ;
+  color:white ;
   padding: 14px 30px;
   text-align: center;
   cursor: pointer;
   margin-top: 5px;
 }
 
+%input-select-box{
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    width: 250px;
+    height: 30px;
+    padding: 0px;
+    border-bottom: 1px solid $labelTextColor;
+}

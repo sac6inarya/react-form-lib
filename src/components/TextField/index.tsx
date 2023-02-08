@@ -36,7 +36,7 @@ const TextField: React.FC<TextFieldsProps> = (props) => {
   return (
     <div className={clsx("text-field", classNames)}>
       {label && <label className="text-label textlabel">{label}</label>}
-      <div className="text-field-box">
+      <div className={clsx("text-field-box textfieldbox")}>
         <input
           className={clsx("input-box inputbox", width)}
           type={type}

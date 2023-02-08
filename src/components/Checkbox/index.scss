@@ -23,3 +23,6 @@
     color: $helperTextColor;
     @extend %helper-error-text-size-opacity;
 }
+.checkbox-label{
+    margin: 3px 3px 0px 0px;
+}

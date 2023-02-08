@@ -2,172 +2,159 @@ import React, { useState } from "react";
 import "./App.scss";
 import { Option } from "./Types/index";
 import * as Yup from "yup";
-
 import { RadioFieldProps } from "./components/Radio/index";
 import { CheckboxFieldProps } from "./components/Checkbox";
-import { SwitchFieldProps } from "./components/Switch";
-import { SelectFProps } from "./components/Selectfield";
-import { FileInputField } from "./components/Fileinput";
-
-// import ReactForm from "./components/ReactForm";
 import TestForm from "./components/TestForm";
 
-const genderoptions: Option[] = [
-  { value: "male", label: "Male" },
-  { value: "female", label: "Female" },
-  { value: "other", label: "Other" },
+const rangeoptions: Option[] = [
+  { value: "$", label: "$" },
+  { value: "$$", label: "$$" },
+  { value: "$$$", label: "$$$" },
+  { value: "$$$$", label: "$$$$" },
 ];
-const bookoptions: Option[] = [
-  { value: "book1", label: "Book1" },
-  { value: "book2", label: "Book2" },
-  { value: "book3", label: "Book3" },
-];
-const languageoptions: Option[] = [
-  { value: "english", label: "English" },
-  { value: "hindi", label: "Hindi" },
-  { value: "french", label: "French" },
+const placetypeoptions: Option[] = [
+  { value: "Distillery", label: "Distillery" },
+  { value: "Brewery", label: "Brewery" },
+  { value: "Restaurant", label: "Restaurant" },
+  { value: "Bar", label: "Bar" },
+  { value: "Cafe", label: "Cafe" },
+  { value: "Cooking School", label: "Cooking School" },
+  { value: "Food Hall", label: "Food Hall" },
+  { value: "Bakery", label: "Bakery" },
+  { value: "Food Truck", label: "Food Truck" },
 ];
 
 const CheckBoxFP: CheckboxFieldProps = {
-  name: "books",
-  options: bookoptions,
-  header: "Select books",
-  helperText: "Select one or more option",
-  column: false,
-};
-const RadioFP: RadioFieldProps = {
-  name: "gender",
-  options: genderoptions,
-  header: "Select gender",
-  helperText: "Select any one option",
+  options: placetypeoptions,
+  header: "Place Type",
   column: true,
 };
-const SelectFP: SelectFProps = {
-  name: "language",
-  options: languageoptions,
-  header: "Select Gender",
-  emptyItem: "Select something",
-  helperText: "Select any one option",
-};
-
-const FileInputFP: FileInputField = {
-  name: "file",
-  header: "Select",
-  helperText: "Select any files",
-  multiple: true,
-};
-
-const SwitchFP: SwitchFieldProps = {
-  name: "switch",
-  header: "Toggle",
-  helperText: "Click for toggle",
+const RadioFP: RadioFieldProps = {
+  name: "range",
+  options: rangeoptions,
+  header: "$ Range",
+  column: true,
 };
 
 const config = [
   [
     {
-      type: "radio",
-      fieldProps: RadioFP,
-      valueKey: "gender",
+      type: "text",
+      valueKey: "place",
+      fieldProps: {
+        header: "Name of the Place",
+        width: "placewidth",
+      },
     },
-    {
-      type: "checkbox",
-      fieldProps: CheckBoxFP,
-      valueKey: "books",
-    },
+  ],
 
+  [
     {
-      type: "switch",
-      fieldProps: SwitchFP,
-      valueKey: "toggle",
+      type: "text",
+      valueKey: "contact",
+      fieldProps: {
+        header: "Contact Number",
+        width: "contactwidth",
+      },
+    },
+    {
+      type: "text",
+      valueKey: "rlink",
+      fieldProps: {
+        header: "Reservation Link",
+        width: "rlink",
+      },
+    },
+  ],
+  [
+    {
+      type: "text",
+      valueKey: "t&d",
+      fieldProps: {
+        header: "Takeout & Delivery",
+        width: "t&dwidth",
+      },
+    },
+    {
+      type: "text",
+      valueKey: "website",
+      fieldProps: {
+        header: "Website",
+        width: "websitewidth",
+      },
+    },
+  ],
+  [
+    {
+      type: "text",
+      valueKey: "email",
+      fieldProps: {
+        header: "Email",
+        width: "emailwidth",
+      },
+    },
+    {
+      type: "text",
+      valueKey: "iglink",
+      fieldProps: {
+        header: "Instagram Link",
+        width: "iglinkwidth",
+      },
     },
   ],
   {
-    type: "select",
-    fieldProps: SelectFP,
-    valueKey: "languages",
+    type: "text",
+    valueKey: "sdis",
+    fieldProps: {
+      header: "Short Discription",
+      width: "sdiswidth",
+    },
   },
-  {
-    type: "file",
-    fieldProps: FileInputFP,
-    valueKey: "files",
-  },
-
   {
     type: "text",
-    valueKey: "name",
+    valueKey: "dis",
     fieldProps: {
-      header: "Enter your Name",
-      helperText: "Enter your text",
-      width: "full",
-      fullWidth: true,
+      header: "Discription",
+      width: "diswidth",
     },
   },
-
-  {
-    type: "password",
-    valueKey: "Password",
-    fieldProps: {
-      header: "Password",
-      helperText: "Enter your password",
+  [
+    {
+      type: "checkbox",
+      fieldProps: CheckBoxFP,
+      valueKey: "placetype",
     },
-  },
-
-  {
-    type: "password",
-    valueKey: "confirmPass",
-    fieldProps: {
-      header: "Confirm password",
-      helperText: "Confirm your password",
+    {
+      type: "radio",
+      fieldProps: RadioFP,
+      valueKey: "range",
     },
-  },
-  {
-    type: "phone",
-    valueKey: "phoneNo",
-    fieldProps: {
-      header: "phone No. ",
-      helperText: "Enter your phone no.",
-    },
-  },
-  {
-    type: "array",
-    valueKey: "array",
-    fieldProps: {
-      itemType: "text",
-      defaultItemValue: "",
-      arrayItemFieldProps: {
-        header: "Header text",
-      },
-    },
-  },
+  ],
 ];
 
 function App() {
   const [loading, setLoading] = useState(false);
-
   const validationSchema = Yup.object({
-    gender: Yup.string().required("Required"),
-    books: Yup.array().min(1, "Required").required("Required"),
+    range: Yup.string().required("Required"),
+    placetype: Yup.array().min(1, "Required").required("Required"),
     language: Yup.string().required("Required"),
     file: Yup.mixed().required("Required"),
-
     name: Yup.string().required("Text Required"),
-    Password: Yup.string()
-      .min(5, "Password must be 5 characters long")
-      .matches(/[a-z]/, "Password requires a lowercase letter")
-      .matches(/[A-Z]/, "Password requires an uppercase letter")
-      .matches(/[0-9]/, "Password requires a number")
-      .matches(/[^\w]/, "Password requires a symbol")
-      .required("Password Required"),
-    confirmPass: Yup.string()
-      .oneOf([Yup.ref("Password"), null], ' "Password" did not match ')
-      .required("Required"),
-    phoneNo: Yup.string().required("Phone number is required"),
+    // Password: Yup.string()
+    //   .min(5, "Password must be 5 characters long")
+    //   .matches(/[a-z]/, "Password requires a lowercase letter")
+    //   .matches(/[A-Z]/, "Password requires an uppercase letter")
+    //   .matches(/[0-9]/, "Password requires a number")
+    //   .matches(/[^\w]/, "Password requires a symbol")
+    //   .required("Password Required"),
+    // confirmPass: Yup.string()
+    //   .oneOf([Yup.ref("Password"), null], ' "Password" did not match ')
+    //   .required("Required"),
+    contact: Yup.string().required("Phone number is required"),
     array: Yup.array().of(
       Yup.string().required("At least one string is required")
     ),
   });
-
   const initialValues = {};
   return (
     <div className="App">
@@ -179,11 +166,10 @@ function App() {
         onSubmit={(values: object) => {
           setLoading(true);
           console.log(values);
-          setTimeout(() => setLoading(false), 2000);
+          setTimeout(() => setLoading(false), 200);
         }}
       />
     </div>
   );
 }
-
 export default App;

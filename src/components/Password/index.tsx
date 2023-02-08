@@ -23,7 +23,7 @@ const Password: React.FC<PasswordFieldsProps> = (props) => {
     formikProps = {} as FormikValues,
   } = props;
 
-  const { header, helperText, name } = fieldProps;
+  const { header, helperText, name, width, type } = fieldProps;
   const fieldValue = get(formikProps, `values.${name}`) as string;
   const fieldError = getFieldError(name || "", formikProps);
   const errorFlag = !!fieldError;
@@ -35,7 +35,7 @@ const Password: React.FC<PasswordFieldsProps> = (props) => {
       )}
       <div className="password-box">
         <input
-          className="input-box inputbox"
+          className={clsx("input-box inputbox", width)}
           type="password"
           autoComplete="off"
           placeholder={`${header}`}

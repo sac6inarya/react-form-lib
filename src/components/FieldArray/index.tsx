@@ -82,7 +82,7 @@ const ArrayField: React.FC<FieldsArrayprops> = (props) => {
             {(values || []).map((value: any, index: number) => (
               <div
                 key={`${fieldProps.name}-${index}`}
-                className="fieldarray-box fieldarray-box"
+                className="fieldarray-box fieldarraybox"
               >
                 {React.cloneElement(itemComponentConfig.component, {
                   itemIndex: index,

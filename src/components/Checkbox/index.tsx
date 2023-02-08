@@ -50,7 +50,7 @@ const CheckBox: React.FC<CheckBoxProps> = (props) => {
         className={clsx("checkbox-container", column ? "column" : undefined)}
       >
         {options.map((it) => (
-          <span key={it.value} className="checkbox-label">
+          <span key={it.value} className="checkbox-label checkboxlabel">
             <input
               className="checkbox-input"
               type="checkbox"

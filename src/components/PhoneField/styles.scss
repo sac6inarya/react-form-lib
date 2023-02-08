@@ -23,9 +23,11 @@
 }
 .phonefield-select{
     @include selectoption;
-    width: 150px;
+    width: 95px;
 }
 .phonefield-input{
+    margin-left: 5px;
     @include inputbox;
+    width: 150px;
 }
 

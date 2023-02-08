@@ -23,8 +23,8 @@ const TextField: React.FC<TextFieldsProps> = (props) => {
     fieldProps = {} as TextFieldProps,
     formikProps = {} as FormikValues,
   } = props;
-
-  const { header, helperText, name = "", type, width } = fieldProps;
+  console.log(fieldProps);
+  const { header, helperText, name = "", width, type } = fieldProps;
   const fieldValue = get(formikProps, `values.${name}`) as string;
   const fieldError = getFieldError(name || "", formikProps);
 
@@ -33,7 +33,7 @@ const TextField: React.FC<TextFieldsProps> = (props) => {
       {header && <label className="text-header textheader">{header}</label>}
       <div className="text-field-box">
         <input
-          className="input-box inputbox"
+          className={clsx("input-box inputbox", width)}
           type="text"
           placeholder={`${header}`}
           name={name}

@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { FieldProps } from "../../Types";
+import { FieldItemProps, FieldProps } from "../../Types";
 import "./styles.scss";
 import { CountryCodeFormat, COUNTRY_LIST } from "../Constants/CountryList";
 import { get } from "lodash";
 import { getFieldError } from "../../Utils";
 import { FormikValues } from "formik";
 import clsx from "clsx";
+import TextHelperError from "../TextHelperError";
 
-export interface PhoneFieldProps {
-  header?: string;
-  helperText?: string;
-  name?: string;
+export interface PhoneFieldProps extends FieldItemProps {
   countryCodeLabel?: string;
   phoneLabel?: string;
   emptyItem?: string | boolean;
@@ -39,12 +37,13 @@ const PhoneField: React.FC<PhoneFieldsProps> = (props) => {
   };
 
   const {
-    header,
+    label,
     name = "",
     helperText,
     emptyItem,
     emptyItemText,
     countryCodeLabel,
+    classNames,
     renderOption = handleRenderOption,
   } = fieldProps;
 
@@ -56,8 +55,7 @@ const PhoneField: React.FC<PhoneFieldsProps> = (props) => {
     }
   }, [name]);
 
-  const newError = getFieldError(name, formikProps);
-  const error = !!newError;
+  const fieldError = getFieldError(name, formikProps);
 
   const onChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -76,14 +74,9 @@ const PhoneField: React.FC<PhoneFieldsProps> = (props) => {
     setCode(e.target.value as string);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (formikProps && formikProps.handleBlur) formikProps?.handleBlur(e);
-  };
-
   return (
-    <div className={clsx("phone-field", name)}>
-      <label className="phonefield-header phonefieldheader" id={name}>
+    <div className={clsx("phone-field", classNames)}>
+      <label className="phonefield-label phonefieldlabel" id={name}>
         {countryCodeLabel || "Country code"}
       </label>
 
@@ -102,7 +95,7 @@ const PhoneField: React.FC<PhoneFieldsProps> = (props) => {
         <input
           type="tel"
           className="phonefield-input phonefieldinput"
-          placeholder={`${header}`}
+          placeholder={`${label}`}
           name={name}
           onBlur={formikProps.handleBlur}
           autoComplete="nope"
@@ -111,15 +104,7 @@ const PhoneField: React.FC<PhoneFieldsProps> = (props) => {
         />
       </div>
 
-      {(error || helperText) && (
-        <div className="label-error">
-          {error ? (
-            <span className="phonefield-error error">{newError}</span>
-          ) : (
-            <span className="phonefield-helper helpertext">{helperText} </span>
-          )}
-        </div>
-      )}
+      <TextHelperError fieldError={fieldError} helperText={helperText} />
     </div>
   );
 };

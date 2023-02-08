@@ -2,20 +2,11 @@
 @import "../Styles/mixins";
 @import "../Styles/extends";
 
-.password-field{
-    @include componentField;
-}
-.password-header {
-    @include componentHeader;   
-}
-.password-error  {
+.error-text {
     color: $errorTextColor;
     @extend %helper-error-text-size-opacity;
 }
-.password-helper{
+.helper-text {
     color: $helperTextColor;
     @extend %helper-error-text-size-opacity;
-}
-.input-box{
-    @include inputbox;
 }

@@ -1,8 +1,8 @@
 import { Formik, FormikValues } from "formik";
 import React from "react";
 import "./index.scss";
-import MLFormBuilder from "../Formbuilder";
-export * from "../Formbuilder";
+import MLFormBuilder from "../FormBuilder";
+export * from "../FormBuilder";
 export interface TestFormProps extends FormikValues {
   formId?: string;
   isInProgress?: boolean;

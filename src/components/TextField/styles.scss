@@ -5,16 +5,8 @@
 .text-field{
     @include componentField; 
 }
-.text-header {
-    @include componentHeader;
-}
-.text-error  {
-    color: $errorTextColor;
-    @extend %helper-error-text-size-opacity;
-}
-.text-helper {
-    color: $helperTextColor;
-    @extend %helper-error-text-size-opacity;
+.text-label {
+    @include componentLabel;
 }
 .input-box{
     @include inputbox;

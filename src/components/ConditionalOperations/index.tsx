@@ -2,7 +2,7 @@ import { FormikValues } from "formik";
 
 import { get, forEach, isEmpty } from "lodash";
 
-import { FormConfig } from "../Formbuilder";
+import { FormConfig } from "../FormBuilder";
 
 export type TFieldConditions = {
   hidden?: boolean;

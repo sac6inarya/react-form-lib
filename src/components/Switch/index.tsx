@@ -1,36 +1,33 @@
 import React from "react";
-import { FieldProps } from "../../Types";
+import { FieldItemProps, FieldProps } from "../../Types";
 import "./index.scss";
 import { get } from "lodash";
 import { FormikValues } from "formik";
 import clsx from "clsx";
 
-export interface SwitchFieldProps {
-  name?: string;
-  header?: string;
-  helperText?: string;
-  disabled?: boolean;
+export interface SwitchFieldProps extends FieldItemProps {
+  label?: string;
   nativeInputProps?: React.InputHTMLAttributes<object>;
 }
 
-interface SwithcProps extends FieldProps {
-  fieldProps?: SwitchFieldProps;
+interface SwitchProps extends FieldProps {
+  fieldProps?: SwitchFieldProps & FieldItemProps;
 }
 
-const Switch: React.FC<SwithcProps> = (props) => {
+const Switch: React.FC<SwitchProps> = (props) => {
   const {
     formikProps = {} as FormikValues,
     fieldProps = {} as SwitchFieldProps,
   } = props;
-  const { header, name = "", helperText } = fieldProps;
+  const { label, name = "", helperText, classNames } = fieldProps;
 
   const fieldValue = get(formikProps, `values.${name}`);
   const handleOnChange = () => {
     formikProps.setFieldValue(`${name}`, !fieldValue);
   };
   return (
-    <div className={clsx("switch-field", name)}>
-      {header && <span className="switch-header switchheader">{header}</span>}
+    <div className={clsx("switch-field", classNames)}>
+      {label && <span className="switch-label switchlabel">{label}</span>}
       <label className="switch-container">
         <input
           className="slider"
@@ -41,6 +38,7 @@ const Switch: React.FC<SwithcProps> = (props) => {
         />
         <span className="slider round"></span>
       </label>
+
       <span className="helper-text helpertext">{helperText}</span>
     </div>
   );

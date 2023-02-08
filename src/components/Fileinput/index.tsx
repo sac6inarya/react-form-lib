@@ -5,10 +5,11 @@ import {
   ReadAsType,
   setValue,
 } from "../../Utils";
-import { FieldProps } from "../../Types";
+import { FieldItemProps, FieldProps } from "../../Types";
 import "./index.scss";
 import { FormikValues } from "formik";
 import clsx from "clsx";
+import TextHelperError from "../TextHelperError";
 
 export interface TFile {
   name: string;
@@ -18,13 +19,9 @@ export interface TFile {
   file: File;
 }
 
-export interface FileInputField {
-  name?: string;
-  header?: string;
-  helperText?: string;
+export interface FileInputField extends FieldItemProps {
   readAs?: ReadAsType;
   encoding?: string;
-  disabled?: boolean;
   multiple?: boolean;
   accept?: string;
   disableDefaultTooltip?: boolean;
@@ -34,8 +31,6 @@ export interface FileInputField {
   wrapWith?: (input: JSX.Element) => JSX.Element;
   /* Function passed to wrapWith should take the input Element and return the same within the wrapped element.
 	  The input element is always invisible if wrapWith is provided */
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  nativeInputProps?: React.InputHTMLAttributes<{}>;
   inputClasses?: string | string[];
 }
 interface FileInputProps extends FieldProps {
@@ -58,8 +53,9 @@ const FileInput: React.FC<FileInputProps> = (props) => {
     onFilesChange,
     nativeInputProps,
     encoding = "utf-8",
-    header,
+    label,
     helperText,
+    classNames,
   } = fieldProps;
 
   const fieldError = getFieldError(name, formikProps);
@@ -84,10 +80,10 @@ const FileInput: React.FC<FileInputProps> = (props) => {
   };
 
   return (
-    <div className={clsx("file-input-field", name)}>
-      {header && (
-        <label htmlFor={name} className="file-input-header fileinputheader">
-          {header}
+    <div className={clsx("file-input-field", classNames)}>
+      {label && (
+        <label htmlFor={name} className="file-input-label fileinputlabel">
+          {label}
         </label>
       )}
 
@@ -103,15 +99,7 @@ const FileInput: React.FC<FileInputProps> = (props) => {
         {...nativeInputProps}
       ></input>
 
-      {(fieldError || helperText) && (
-        <span>
-          {fieldError ? (
-            <span className="file-input-error error">{fieldError}</span>
-          ) : (
-            <span className="helper-text helpertext">{helperText}</span>
-          )}
-        </span>
-      )}
+      <TextHelperError fieldError={fieldError} helperText={helperText} />
     </div>
   );
 };

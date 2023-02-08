@@ -5,17 +5,8 @@
 .phone-field{
     @include componentField;
 }
-.phonefield-header{
-    @include componentHeader;   
-}
-
-.phonefield-helper{
-    color: $helperTextColor;
-    @extend %helper-error-text-size-opacity;
-}
-.phonefield-error{
-    color: $errorTextColor;
-    @extend %helper-error-text-size-opacity;
+.phonefield-label{
+    @include componentLabel;   
 }
 
 .phonefield-container{

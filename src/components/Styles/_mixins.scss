@@ -6,30 +6,31 @@
     width: 100%;
 }
 
-@mixin componentHeader() {
-    color: $headerTextColor;
-    @extend %header-text-size-opacity;
+@mixin componentLabel() {
+    color: $labelTextColor;
+    @extend %label-text-size-opacity;
 }
 
-@mixin column {
+@mixin column (){
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-@mixin inputbox {
+@mixin inputbox (){
     border: none;
     outline: none;
-    border-bottom: 2px solid rgb(125, 110, 196);
+    border-bottom: 1px solid rgb(125, 110, 196);
     width: 250px;
     height: 30px;
+    padding: 0px;
 }
 
-@mixin selectoption {
+@mixin selectoption (){
     border: none;
     outline: none;
-    border-bottom:  2px solid rgb(125, 110, 196);
+    border-bottom:  1px solid rgb(125, 110, 196);
     width: 250px;
     height: 34px;
-    
+    padding: 0px;
 }

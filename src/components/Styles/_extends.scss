@@ -2,14 +2,14 @@
     font-size: $helperErrorTextSize;
     opacity: $primaryOpacity;
 }
-%header-text-size-opacity{
-    font-size: $headerTextSize;
+%label-text-size-opacity{
+    font-size: $labelTextSize;
     opacity: $primaryOpacity;
 }
 
 %btn{
-  font-size: $headerTextSize;
-  background-color: $headerTextColor;
+  font-size: $labelTextSize;
+  background-color: $labelTextColor;
   border-radius: 4px;
   color:#ccc ;
   padding: 14px 30px;

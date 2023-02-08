@@ -2,23 +2,15 @@ import React from "react";
 import "./index.scss";
 import { get } from "lodash";
 import clsx from "clsx";
-import { FieldProps } from "../../Types";
+import { FieldItemProps, FieldProps } from "../../Types";
 import { getFieldError } from "../../Utils";
 import { FormikValues } from "formik";
+import TextHelperError from "../TextHelperError";
+import { Option } from "../../Types";
 
-export interface Option {
-  value: string;
-  label: string;
-}
-
-export interface CheckboxFieldProps {
+export interface CheckboxFieldProps extends FieldItemProps {
   options?: Option[];
-  name?: string;
-  header?: string;
-  helperText?: string;
   column?: boolean;
-  disabled?: boolean;
-  nativeInputProps?: React.InputHTMLAttributes<object>;
 }
 interface CheckBoxProps extends FieldProps {
   fieldProps?: CheckboxFieldProps;
@@ -32,9 +24,10 @@ const CheckBox: React.FC<CheckBoxProps> = (props) => {
   const {
     options = [],
     name = "",
-    header,
+    label,
     helperText,
     column = false,
+    classNames,
   } = fieldProps;
 
   const fieldValue: string[] = get(formikProps, `values.${name}`) || [] || "";
@@ -42,15 +35,13 @@ const CheckBox: React.FC<CheckBoxProps> = (props) => {
   const fieldError = getFieldError(name, formikProps) as string;
 
   return (
-    <div className={clsx("checkbox-field ", name)}>
-      {header && (
-        <span className="checkbox-header checkboxheader">{header}</span>
-      )}
+    <div className={clsx("checkbox-field ", classNames)}>
+      {label && <span className="checkbox-label checkboxlabel">{label}</span>}
       <div
         className={clsx("checkbox-container", column ? "column" : undefined)}
       >
         {options.map((it) => (
-          <span key={it.value} className="checkbox-label checkboxlabel">
+          <span key={it.value} className="checkbox-ilabel checkboxilabel">
             <input
               className="checkbox-input"
               type="checkbox"
@@ -59,19 +50,11 @@ const CheckBox: React.FC<CheckBoxProps> = (props) => {
               checked={fieldValue?.includes(it.value)}
               onChange={formikProps.handleChange}
             />
-            {it.label}
+            {it.ilabel}
           </span>
         ))}
       </div>
-      {(fieldError || helperText) && (
-        <div>
-          {fieldError ? (
-            <span className="checkbox-error error">{fieldError}</span>
-          ) : (
-            <span className="helper-text helpertext">{helperText} </span>
-          )}
-        </div>
-      )}
+      <TextHelperError fieldError={fieldError} helperText={helperText} />
     </div>
   );
 };

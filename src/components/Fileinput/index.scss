@@ -6,18 +6,6 @@
     @include componentField;
 }
 
-.file-input-header {
-    @include componentHeader;
-}
-
-
-.helper-text {
-    color: $helperTextColor;
-    @extend %helper-error-text-size-opacity;
-
-}
-
-.file-input-error {
-    color: $errorTextColor;
-    @extend %helper-error-text-size-opacity;
+.file-input-label {
+    @include componentLabel;
 }

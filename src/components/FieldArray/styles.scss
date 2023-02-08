@@ -5,8 +5,8 @@
 .array-field{
     @include componentField;
 }
-.fieldarray-header {
-    @include componentHeader;
+.fieldarray-label {
+    @include componentLabel;
 }
 
 .fieldarray-box{

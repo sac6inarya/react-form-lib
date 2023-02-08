@@ -3,37 +3,40 @@ import "./App.scss";
 import { Option } from "./Types/index";
 import * as Yup from "yup";
 import { RadioFieldProps } from "./components/Radio/index";
-import { CheckboxFieldProps } from "./components/Checkbox";
+import { CheckboxFieldProps } from "./components/CheckBkox";
 import TestForm from "./components/TestForm";
 
 const rangeoptions: Option[] = [
-  { value: "$", label: "$" },
-  { value: "$$", label: "$$" },
-  { value: "$$$", label: "$$$" },
-  { value: "$$$$", label: "$$$$" },
+  { value: "$", ilabel: "$" },
+  { value: "$$", ilabel: "$$" },
+  { value: "$$$", ilabel: "$$$" },
+  { value: "$$$$", ilabel: "$$$$" },
 ];
 const placetypeoptions: Option[] = [
-  { value: "Distillery", label: "Distillery" },
-  { value: "Brewery", label: "Brewery" },
-  { value: "Restaurant", label: "Restaurant" },
-  { value: "Bar", label: "Bar" },
-  { value: "Cafe", label: "Cafe" },
-  { value: "Cooking School", label: "Cooking School" },
-  { value: "Food Hall", label: "Food Hall" },
-  { value: "Bakery", label: "Bakery" },
-  { value: "Food Truck", label: "Food Truck" },
+  { value: "Distillery", ilabel: "Distillery" },
+  { value: "Brewery", ilabel: "Brewery" },
+  { value: "Restaurant", ilabel: "Restaurant" },
+  { value: "Bar", ilabel: "Bar" },
+  { value: "Cafe", ilabel: "Cafe" },
+  { value: "Cooking School", ilabel: "Cooking School" },
+  { value: "Food Hall", ilabel: "Food Hall" },
+  { value: "Bakery", ilabel: "Bakery" },
+  { value: "Food Truck", ilabel: "Food Truck" },
 ];
 
 const CheckBoxFP: CheckboxFieldProps = {
   options: placetypeoptions,
-  header: "Place Type",
+  label: "Place Type",
   column: true,
+  name: "",
+  id: "",
 };
 const RadioFP: RadioFieldProps = {
   name: "range",
   options: rangeoptions,
-  header: "$ Range",
+  label: "$ Range",
   column: true,
+  id: "",
 };
 
 const config = [
@@ -42,7 +45,7 @@ const config = [
       type: "text",
       valueKey: "place",
       fieldProps: {
-        header: "Name of the Place",
+        label: "Name of the Place",
         width: "placewidth",
       },
     },
@@ -53,7 +56,7 @@ const config = [
       type: "text",
       valueKey: "contact",
       fieldProps: {
-        header: "Contact Number",
+        label: "Contact Number",
         width: "contactwidth",
       },
     },
@@ -61,8 +64,8 @@ const config = [
       type: "text",
       valueKey: "rlink",
       fieldProps: {
-        header: "Reservation Link",
-        width: "rlink",
+        label: "Reservation Link",
+        width: "rlinkwidth",
       },
     },
   ],
@@ -71,15 +74,23 @@ const config = [
       type: "text",
       valueKey: "t&d",
       fieldProps: {
-        header: "Takeout & Delivery",
-        width: "t&dwidth",
+        label: "Takeout & Delivery",
+        width: "tanddwidth",
       },
     },
+    // {
+    //   type: "password",
+    //   valueKey: "pass",
+    //   fieldProps: {
+    //     label: "password",
+    //     width: "tanddwidth",
+    //   },
+    // },
     {
       type: "text",
       valueKey: "website",
       fieldProps: {
-        header: "Website",
+        label: "Website",
         width: "websitewidth",
       },
     },
@@ -89,7 +100,7 @@ const config = [
       type: "text",
       valueKey: "email",
       fieldProps: {
-        header: "Email",
+        label: "Email",
         width: "emailwidth",
       },
     },
@@ -97,7 +108,7 @@ const config = [
       type: "text",
       valueKey: "iglink",
       fieldProps: {
-        header: "Instagram Link",
+        label: "Instagram Link",
         width: "iglinkwidth",
       },
     },
@@ -106,7 +117,7 @@ const config = [
     type: "text",
     valueKey: "sdis",
     fieldProps: {
-      header: "Short Discription",
+      label: "Short Discription",
       width: "sdiswidth",
     },
   },
@@ -114,7 +125,7 @@ const config = [
     type: "text",
     valueKey: "dis",
     fieldProps: {
-      header: "Discription",
+      label: "Discription",
       width: "diswidth",
     },
   },

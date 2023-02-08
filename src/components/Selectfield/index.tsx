@@ -1,19 +1,15 @@
 import React from "react";
 import { getFieldError } from "../../Utils";
-import { FieldProps, Option } from "../../Types";
+import { FieldItemProps, FieldProps } from "../../Types";
 import { isString } from "lodash";
 import "./index.scss";
 import { FormikValues } from "formik";
 import clsx from "clsx";
-
-export interface SelectFProps {
-  name?: string;
-  header?: string;
+import TextHelperError from "../TextHelperError";
+import { Option } from "../../Types";
+export interface SelectFProps extends FieldItemProps {
   options?: Option[];
   emptyItem?: string | boolean;
-  helperText?: string;
-  disabled?: boolean;
-  nativeInputProps?: React.InputHTMLAttributes<object>;
 }
 interface SelectFieldProps extends FieldProps {
   fieldProps?: SelectFProps;
@@ -22,19 +18,26 @@ interface SelectFieldProps extends FieldProps {
 const SelectField: React.FC<SelectFieldProps> = (props) => {
   const { formikProps = {} as FormikValues, fieldProps = {} as SelectFProps } =
     props;
-  const { name = "", header, options = [], emptyItem, helperText } = fieldProps;
+  const {
+    name = "",
+    label,
+    options = [],
+    emptyItem,
+    helperText,
+    classNames,
+  } = fieldProps;
   const fieldError = getFieldError(name, formikProps) || "";
   const emptyItemText = isString(emptyItem) ? emptyItem : "No option selected";
 
   const optionList = emptyItem
-    ? [{ value: "", label: emptyItemText }, ...options]
+    ? [{ value: "", ilabel: emptyItemText }, ...options]
     : options;
 
   return (
-    <div className={clsx("select-field", name)}>
-      {header && (
-        <label htmlFor={name} className="select-field-header selectfieldheader">
-          {header}
+    <div className={clsx("select-field", classNames)}>
+      {label && (
+        <label htmlFor={name} className="select-field-label selectfieldlabel">
+          {label}
         </label>
       )}
       <div className="select-container">
@@ -46,22 +49,14 @@ const SelectField: React.FC<SelectFieldProps> = (props) => {
           {optionList.map((it) => {
             return (
               <option key={it.value} value={it.value}>
-                {it.label}
+                {it.ilabel}
               </option>
             );
           })}
         </select>
       </div>
 
-      {(helperText || fieldError) && (
-        <div>
-          {fieldError ? (
-            <span className="select-field-error error">{fieldError}</span>
-          ) : (
-            <span className="helper-text helpertext">{helperText}</span>
-          )}
-        </div>
-      )}
+      <TextHelperError fieldError={fieldError} helperText={helperText} />
     </div>
   );
 };

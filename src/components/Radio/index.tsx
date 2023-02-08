@@ -2,23 +2,14 @@ import { get } from "lodash";
 import React from "react";
 import "./index.scss";
 import clsx from "clsx";
-import { FieldProps } from "../../Types";
+import { FieldItemProps, FieldProps } from "../../Types";
 import { getFieldError } from "../../Utils";
 import { FormikValues } from "formik";
-
-export interface Option {
-  value: string;
-  label: string;
-}
-
-export interface RadioFieldProps {
+import TextHelperError from "../TextHelperError";
+import { Option } from "../../Types";
+export interface RadioFieldProps extends FieldItemProps {
   options?: Option[];
-  name?: string;
-  header?: string;
-  helperText?: string;
   column?: boolean;
-  disabled?: boolean;
-  nativeInputProps?: React.InputHTMLAttributes<object>;
 }
 interface RadioProps extends FieldProps {
   fieldProps?: RadioFieldProps;
@@ -29,17 +20,24 @@ const Radio: React.FC<RadioProps> = (props) => {
     formikProps = {} as FormikValues,
     fieldProps = {} as RadioFieldProps,
   } = props;
-  const { options = [], name = "", helperText, header, column } = fieldProps;
+  const {
+    options = [],
+    name = "",
+    helperText,
+    label,
+    column,
+    classNames,
+  } = fieldProps;
   const fieldValue: string = get(formikProps, `values.${name}`) || "";
 
   const fieldError = getFieldError(name, formikProps) as string;
 
   return (
-    <div className={clsx("radio-field", name)}>
-      {header && <span className="radio-header radioheader">{header}</span>}
+    <div className={clsx("radio-field", classNames)}>
+      {label && <span className="radio-label radiolabel">{label}</span>}
       <div className={clsx("radio-container", column ? "column" : undefined)}>
         {options.map((it) => (
-          <span key={it.value} className="radio-label radiolabel">
+          <span key={it.value} className="radio-ilabel radioilabel">
             <input
               className="radio-input"
               type="radio"
@@ -48,20 +46,12 @@ const Radio: React.FC<RadioProps> = (props) => {
               checked={fieldValue === it.value}
               onChange={formikProps.handleChange}
             />
-            {it.label}
+            {it.ilabel}
           </span>
         ))}
       </div>
 
-      {(fieldError || helperText) && (
-        <span>
-          {fieldError ? (
-            <span className="radio-error error">{fieldError}</span>
-          ) : (
-            <span className="helper-text helpertext">{helperText}</span>
-          )}
-        </span>
-      )}
+      <TextHelperError fieldError={fieldError} helperText={helperText} />
     </div>
   );
 };

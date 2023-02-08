@@ -2,15 +2,12 @@ import React from "react";
 import { get } from "lodash";
 import "./styles.scss";
 import { FieldArray, FieldArrayRenderProps, FormikValues } from "formik";
-import { FieldProps, getComponentConfig } from "../Formbuilder/index";
+import { FieldProps, getComponentConfig } from "../FormBuilder/index";
 import clsx from "clsx";
+import { FieldItemProps } from "../../Types";
 
-export interface FieldArrayProps {
-  name?: string;
-  header?: string;
+export interface FieldArrayProps extends FieldItemProps {
   itemType: string;
-  helperText?: string;
-  id?: string;
   addButtonText?: string;
   addButton?: JSX.Element;
   removeButton?: JSX.Element;
@@ -32,7 +29,7 @@ const ArrayField: React.FC<FieldsArrayprops> = (props) => {
 
   const {
     addButtonText = "Add",
-    header,
+    label,
     name = "",
     itemType,
     addButton,
@@ -41,6 +38,7 @@ const ArrayField: React.FC<FieldsArrayprops> = (props) => {
     onRemoveButtonClick,
     arrayItemFieldProps = {},
     defaultItemValue = "",
+    classNames,
   } = fieldProps;
 
   const values = get(formikProps, `values.${name}`);
@@ -71,9 +69,9 @@ const ArrayField: React.FC<FieldsArrayprops> = (props) => {
   };
 
   return (
-    <div className={clsx("array-field", name)}>
-      {header && (
-        <label className="fieldarray-header fieldarrayheader">{header}</label>
+    <div className={clsx("array-field", classNames)}>
+      {label && (
+        <label className="fieldarray-label fieldarraylabel">{label}</label>
       )}
       <FieldArray
         name={name}

@@ -2,11 +2,11 @@
 @import "../Styles/mixins";
 @import "../Styles/extends";
 
-.radio-field {
+.checkbox-field {
     @include componentField;
 }
 
-.radio-label {
+.checkbox-label {
     @include componentLabel;
 }
 
@@ -14,6 +14,6 @@
     @include column;
 }
 
-.radio-ilabel{
+.checkbox-ilabel{
     margin: 3px 3px 0px 0px;
 }

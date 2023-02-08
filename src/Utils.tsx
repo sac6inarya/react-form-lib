@@ -1,7 +1,7 @@
 import * as React from "react";
 import { map, isString, get } from "lodash";
 import { FormikValues } from "formik";
-import { TFile } from "./components/Fileinput/index";
+import { TFile } from "./components/FileInput/index";
 
 export type MenuOptionObject<T = unknown> = {
   name: string | React.ReactNode;

@@ -2,16 +2,15 @@ import clsx from "clsx";
 import { FormikProps } from "formik";
 import { get, isArray, isFunction, map, uniqueId } from "lodash";
 import React, { useEffect, useState } from "react";
-import CheckBox from "../Checkbox";
+import CheckBox from "../CheckBkox";
 import Radio from "../Radio";
-import SelectField from "../Selectfield";
+import SelectField from "../SelectField";
 import Switch from "../Switch";
-import FileInput from "../Fileinput";
-import Password from "../Password";
+import FileInput from "../FileInput";
 import PhoneField from "../PhoneField";
 import ArrayField from "../FieldArray";
 import TextField from "../TextField";
-
+import { FieldItemProps } from "../../Types";
 import "./index.scss";
 
 import {
@@ -21,15 +20,12 @@ import {
 export interface ReadOnlyProps {
   renderer: (props: FieldProps) => React.ReactNode;
 }
-export interface FormConfig {
+export interface FormConfig extends FieldItemProps {
   type: string;
-  name?: string;
-  id?: string;
   valueKey: string;
   flex?: number | string;
   fieldProps?: object;
   styles?: object;
-  classNames?: Array<string>;
   condition?: TFieldConditions;
   readOnlyProps?: ReadOnlyProps;
 }
@@ -121,8 +117,8 @@ attachField("radio", <Radio />);
 attachField("file", <FileInput />);
 attachField("phone", <PhoneField />);
 attachField("array", <ArrayField />);
-attachField("password", <Password />);
-attachField("text", <TextField />);
+attachField("password", <TextField />, { type: "password" });
+attachField("text", <TextField />, { type: "text" });
 
 export const BuildFormRow: React.FC<FormRowProps> = (props) => {
   const {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, FormikValues } from "formik";
-import MLFormBuilder from "../components/Formbuilder";
-export * from "../components/Formbuilder";
+import MLFormBuilder from "./FormBuilder";
+export * from "./FormBuilder";
 export interface ReactFormProps extends FormikValues {
   formId?: string;
   isInProgress?: boolean;

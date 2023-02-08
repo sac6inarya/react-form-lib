@@ -6,8 +6,8 @@
     @include componentField;
 }
 
-.switch-header {
-    @include componentHeader;
+.switch-label {
+    @include componentLabel;
 }
 
 .switch-container {
@@ -50,7 +50,7 @@
 }
 
 input:checked+.slider {
-    background-color: $headerTextColor;
+    background-color: $labelTextColor;
 }
 
 

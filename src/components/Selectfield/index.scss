@@ -6,21 +6,10 @@
     @include componentField;
 }
 
-.select-field-header {
-    @include componentHeader;
+.select-field-label {
+    @include componentLabel;
 }
 
 .select-option{
     @include selectoption;
-}
-
-.helper-text {
-    color: $helperTextColor;
-    @extend %helper-error-text-size-opacity;
-    
-}
-
-.select-field-error {
-    color: $errorTextColor;
-    @extend %helper-error-text-size-opacity;
 }

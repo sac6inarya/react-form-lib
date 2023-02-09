@@ -37,7 +37,7 @@ const Radio: React.FC<RadioProps> = (props) => {
       {label && <span className="radio-label radiolabel">{label}</span>}
       <div className={clsx("radio-container", column ? "column" : undefined)}>
         {options.map((it) => (
-          <span key={it.value} className="radio-ilabel radioilabel">
+          <span key={it.value} className="radio-name radioname">
             <input
               className="radio-input"
               type="radio"
@@ -46,7 +46,7 @@ const Radio: React.FC<RadioProps> = (props) => {
               checked={fieldValue === it.value}
               onChange={formikProps.handleChange}
             />
-            {it.ilabel}
+            {it.name}
           </span>
         ))}
       </div>

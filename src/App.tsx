@@ -10,31 +10,30 @@ import { SelectFProps } from "./components/SelectField";
 import { SwitchFieldProps } from "./components/Switch";
 
 const genderoptions: Option[] = [
-  { value: "male", ilabel: "Male" },
-  { value: "female", ilabel: "Female" },
-  { value: "other", ilabel: "Other" },
+  { value: "male", name: "Male" },
+  { value: "female", name: "Female" },
+  { value: "other", name: "Other" },
 ];
 const languageoptions: Option[] = [
-  { value: "english", ilabel: "English" },
-  { value: "hindi", ilabel: "Hindi" },
-  { value: "french", ilabel: "French" },
+  { value: "english", name: "English" },
+  { value: "hindi", name: "Hindi" },
+  { value: "french", name: "French" },
 ];
 const titleOptions: Option[] = [
-  { value: "Mr", ilabel: "Mr" },
-  { value: "Mrs", ilabel: "Mrs" },
-  { value: "Miss", ilabel: "Miss" },
+  { value: "Mr", name: "Mr" },
+  { value: "Mrs", name: "Mrs" },
+  { value: "Miss", name: "Miss" },
 ];
 const relationOptions: Option[] = [
-  { value: "Customer", ilabel: "Customer" },
-  { value: "Partner", ilabel: "Partner" },
-  { value: "Employee", ilabel: "Employee" },
-  { value: "Other", ilabel: "Other" },
+  { value: "Customer", name: "Customer" },
+  { value: "Partner", name: "Partner" },
+  { value: "Employee", name: "Employee" },
+  { value: "Other", name: "Other" },
 ];
 const agreementoptions: Option[] = [
   {
     value: "check",
-    ilabel:
-      "I agree to the Terms & Conditions and Privacy Policy Terms & Conditions and Privacy Policy",
+    name: "I agree to the Terms & Conditions and Privacy Policy Terms & Conditions and Privacy Policy",
   },
 ];
 const RadioFP: RadioFieldProps = {
@@ -166,6 +165,7 @@ const rgistrationconfig = [
         label: "phone No. ",
         helperText: "Enter your phone no.",
         widht: "phonewidth",
+        placeholder: "Enter your phone no.",
       },
     },
   ],
@@ -196,21 +196,21 @@ const rgistrationconfig = [
 ];
 
 const rangeoptions: Option[] = [
-  { value: "$", ilabel: "$" },
-  { value: "$$", ilabel: "$$" },
-  { value: "$$$", ilabel: "$$$" },
-  { value: "$$$$", ilabel: "$$$$" },
+  { value: "$", name: "$" },
+  { value: "$$", name: "$$" },
+  { value: "$$$", name: "$$$" },
+  { value: "$$$$", name: "$$$$" },
 ];
 const placetypeoptions: Option[] = [
-  { value: "Distillery", ilabel: "Distillery" },
-  { value: "Brewery", ilabel: "Brewery" },
-  { value: "Restaurant", ilabel: "Restaurant" },
-  { value: "Bar", ilabel: "Bar" },
-  { value: "Cafe", ilabel: "Cafe" },
-  { value: "Cooking School", ilabel: "Cooking School" },
-  { value: "Food Hall", ilabel: "Food Hall" },
-  { value: "Bakery", ilabel: "Bakery" },
-  { value: "Food Truck", ilabel: "Food Truck" },
+  { value: "Distillery", name: "Distillery" },
+  { value: "Brewery", name: "Brewery" },
+  { value: "Restaurant", name: "Restaurant" },
+  { value: "Bar", name: "Bar" },
+  { value: "Cafe", name: "Cafe" },
+  { value: "Cooking School", name: "Cooking School" },
+  { value: "Food Hall", name: "Food Hall" },
+  { value: "Bakery", name: "Bakery" },
+  { value: "Food Truck", name: "Food Truck" },
 ];
 
 const TestCheckBoxFP: CheckboxFieldProps = {
@@ -282,6 +282,7 @@ const testformconfig = [
       fieldProps: {
         label: "Email",
         width: "emailwidth",
+        placeholder: "Enter email",
       },
     },
     {

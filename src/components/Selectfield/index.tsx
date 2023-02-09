@@ -31,7 +31,7 @@ const SelectField: React.FC<SelectFieldProps> = (props) => {
   const emptyItemText = isString(emptyItem) ? emptyItem : "No option selected";
 
   const optionList = emptyItem
-    ? [{ value: "", ilabel: emptyItemText }, ...options]
+    ? [{ value: "", name: emptyItemText }, ...options]
     : options;
 
   return (
@@ -50,7 +50,7 @@ const SelectField: React.FC<SelectFieldProps> = (props) => {
           {optionList.map((it) => {
             return (
               <option key={it.value} value={it.value}>
-                {it.ilabel}
+                {it.name}
               </option>
             );
           })}

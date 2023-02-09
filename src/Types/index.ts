@@ -16,6 +16,6 @@ export interface FieldItemProps {
 }
 
 export interface Option {
-  ilabel: string;
+  name: string;
   value: string;
 }

@@ -13,6 +13,7 @@ export interface PhoneFieldProps extends FieldItemProps {
   phoneLabel?: string;
   emptyItem?: string | boolean;
   emptyItemText?: string;
+  placeholder?: string;
   renderOption?: (country: CountryCodeFormat, index?: number) => JSX.Element;
 }
 
@@ -45,6 +46,7 @@ const PhoneField: React.FC<PhoneFieldsProps> = (props) => {
     countryCodeLabel,
     classNames,
     width,
+    placeholder,
     renderOption = handleRenderOption,
   } = fieldProps;
 
@@ -96,7 +98,7 @@ const PhoneField: React.FC<PhoneFieldsProps> = (props) => {
         <input
           type="tel"
           className={clsx("phonefield-input phonefieldinput", width)}
-          placeholder={`${label}`}
+          placeholder={`${placeholder || ""}`}
           name={name}
           onBlur={formikProps.handleBlur}
           autoComplete="nope"

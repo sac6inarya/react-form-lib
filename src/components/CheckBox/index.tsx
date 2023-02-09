@@ -41,7 +41,7 @@ const CheckBox: React.FC<CheckBoxProps> = (props) => {
         className={clsx("checkbox-container", column ? "column" : undefined)}
       >
         {options.map((it) => (
-          <span key={it.value} className="checkbox-ilabel checkboxilabel">
+          <span key={it.value} className="checkbox-name checkboxname">
             <input
               className="checkbox-input"
               type="checkbox"
@@ -50,7 +50,7 @@ const CheckBox: React.FC<CheckBoxProps> = (props) => {
               checked={fieldValue?.includes(it.value)}
               onChange={formikProps.handleChange}
             />
-            {it.ilabel}
+            {it.name}
           </span>
         ))}
       </div>
